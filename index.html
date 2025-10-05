@@ -1,0 +1,2747 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Analisis Tabel Shio Togel</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <style>
+        body {
+            box-sizing: border-box;
+        }
+        
+        .shio-cell {
+            transition: all 0.3s ease;
+        }
+        
+        .shio-cell:hover {
+            transform: scale(1.05);
+        }
+        
+        .filtered-out {
+            opacity: 0.3;
+            background-color: #f3f4f6 !important;
+        }
+        
+        .highlight {
+            background-color: #fef3c7 !important;
+            border: 2px solid #f59e0b;
+        }
+        
+        .shio-1 { background-color: #fee2e2; }
+        .shio-2 { background-color: #fef3c7; }
+        .shio-3 { background-color: #ecfdf5; }
+        .shio-4 { background-color: #eff6ff; }
+        .shio-5 { background-color: #f3e8ff; }
+        .shio-6 { background-color: #fdf2f8; }
+        .shio-7 { background-color: #f0f9ff; }
+        .shio-8 { background-color: #f7fee7; }
+        .shio-9 { background-color: #fff7ed; }
+        .shio-10 { background-color: #fef7ff; }
+        .shio-11 { background-color: #f0fdf4; }
+        .shio-12 { background-color: #fefce8; }
+    </style>
+</head>
+<body class="bg-gray-100 min-h-screen">
+    <div class="container mx-auto px-4 py-8">
+        <!-- Header -->
+        <div class="text-center mb-8">
+            <h1 class="text-4xl font-bold text-gray-800 mb-2">🐉 Analisis Tabel Shio Togel</h1>
+            <p class="text-gray-600">Analisis shio berdasarkan ekor dan angka main dengan sistem pangkas</p>
+        </div>
+
+        <div class="grid lg:grid-cols-3 gap-8">
+            <!-- Panel Kontrol -->
+            <div class="lg:col-span-1">
+                <div class="bg-white rounded-xl shadow-lg p-6 mb-6">
+                    <h2 class="text-2xl font-semibold text-gray-800 mb-6">🎯 Panel Kontrol</h2>
+                    
+                    <!-- Filter Pasaran -->
+                    <div class="mb-6">
+                        <label class="block text-sm font-medium text-gray-700 mb-2">Pilih Pasaran</label>
+                        <select id="pasaranSelect" class="w-full px-4 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-transparent">
+                            <option value="all">Semua Pasaran</option>
+                            <option value="sgp">🇸🇬 SGP</option>
+                            <option value="sydney_loto">🇦🇺 SYDNEY LOTO</option>
+                            <option value="sydney_pools">🇦🇺 SYDNEY POOLS</option>
+                            <option value="bullseye">🎯 BULLSEYE</option>
+                            <option value="china">🇨🇳 CHINA</option>
+                            <option value="taiwan">🇹🇼 TAIWAN</option>
+                            <option value="cambodia">🇰🇭 CAMBODIA</option>
+                            <option value="hk_loto">🇭🇰 HK LOTO</option>
+                            <option value="hk_pools">🇭🇰 HK POOLS</option>
+                            <option value="carolina_day">🇺🇸 CAROLINA DAY</option>
+                            <option value="oregon_3">🇺🇸 OREGON 3</option>
+                            <option value="oregon_6">🇺🇸 OREGON 6</option>
+                            <option value="oregon_9">🇺🇸 OREGON 9</option>
+                            <option value="oregon_12">🇺🇸 OREGON 12</option>
+                            <option value="kentucky_midday">🇺🇸 KENTUCKY MIDDAY</option>
+                            <option value="florida_midday">🇺🇸 FLORIDA MIDDAY</option>
+                            <option value="japan">🇯🇵 JAPAN</option>
+                            <option value="ttm_p1">🎲 TTM P1</option>
+                            <option value="ttm_p2">🎲 TTM P2</option>
+                            <option value="ttm_p3">🎲 TTM P3</option>
+                            <option value="ttm_p4">🎲 TTM P4</option>
+                            <option value="ttm_p5">🎲 TTM P5</option>
+                            <option value="pcso">🇵🇭 PCSO</option>
+                            <option value="florida_evening">🇺🇸 FLORIDA EVENING</option>
+                            <option value="kentucky_evening">🇺🇸 KENTUCKY EVENING</option>
+                        </select>
+                        <div id="pasaranInfo" class="mt-2 text-xs text-gray-600 hidden">
+                            <div class="bg-blue-50 p-2 rounded border">
+                                <div id="pasaranDetails"></div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Filter Ekor -->
+                    <div class="mb-6">
+                        <label class="block text-sm font-medium text-gray-700 mb-2">Filter Ekor</label>
+                        <div class="grid grid-cols-5 gap-2">
+                            <button class="ekor-btn px-3 py-2 border border-gray-300 rounded-lg hover:bg-blue-100 focus:ring-2 focus:ring-blue-500" data-ekor="0">0</button>
+                            <button class="ekor-btn px-3 py-2 border border-gray-300 rounded-lg hover:bg-blue-100 focus:ring-2 focus:ring-blue-500" data-ekor="1">1</button>
+                            <button class="ekor-btn px-3 py-2 border border-gray-300 rounded-lg hover:bg-blue-100 focus:ring-2 focus:ring-blue-500" data-ekor="2">2</button>
+                            <button class="ekor-btn px-3 py-2 border border-gray-300 rounded-lg hover:bg-blue-100 focus:ring-2 focus:ring-blue-500" data-ekor="3">3</button>
+                            <button class="ekor-btn px-3 py-2 border border-gray-300 rounded-lg hover:bg-blue-100 focus:ring-2 focus:ring-blue-500" data-ekor="4">4</button>
+                            <button class="ekor-btn px-3 py-2 border border-gray-300 rounded-lg hover:bg-blue-100 focus:ring-2 focus:ring-blue-500" data-ekor="5">5</button>
+                            <button class="ekor-btn px-3 py-2 border border-gray-300 rounded-lg hover:bg-blue-100 focus:ring-2 focus:ring-blue-500" data-ekor="6">6</button>
+                            <button class="ekor-btn px-3 py-2 border border-gray-300 rounded-lg hover:bg-blue-100 focus:ring-2 focus:ring-blue-500" data-ekor="7">7</button>
+                            <button class="ekor-btn px-3 py-2 border border-gray-300 rounded-lg hover:bg-blue-100 focus:ring-2 focus:ring-blue-500" data-ekor="8">8</button>
+                            <button class="ekor-btn px-3 py-2 border border-gray-300 rounded-lg hover:bg-blue-100 focus:ring-2 focus:ring-blue-500" data-ekor="9">9</button>
+                        </div>
+                        <button id="clearEkor" class="mt-2 w-full px-4 py-2 bg-gray-500 text-white rounded-lg hover:bg-gray-600">Clear Ekor</button>
+                    </div>
+
+                    <!-- Filter Shio -->
+                    <div class="mb-6">
+                        <label class="block text-sm font-medium text-gray-700 mb-2">Filter Shio</label>
+                        <div class="grid grid-cols-3 gap-2">
+                            <button class="shio-btn px-2 py-2 text-xs border border-gray-300 rounded-lg hover:bg-red-100 focus:ring-2 focus:ring-red-500" data-shio="1">🐭 Tikus</button>
+                            <button class="shio-btn px-2 py-2 text-xs border border-gray-300 rounded-lg hover:bg-yellow-100 focus:ring-2 focus:ring-yellow-500" data-shio="2">🐂 Kerbau</button>
+                            <button class="shio-btn px-2 py-2 text-xs border border-gray-300 rounded-lg hover:bg-green-100 focus:ring-2 focus:ring-green-500" data-shio="3">🐅 Harimau</button>
+                            <button class="shio-btn px-2 py-2 text-xs border border-gray-300 rounded-lg hover:bg-blue-100 focus:ring-2 focus:ring-blue-500" data-shio="4">🐰 Kelinci</button>
+                            <button class="shio-btn px-2 py-2 text-xs border border-gray-300 rounded-lg hover:bg-purple-100 focus:ring-2 focus:ring-purple-500" data-shio="5">🐉 Naga</button>
+                            <button class="shio-btn px-2 py-2 text-xs border border-gray-300 rounded-lg hover:bg-pink-100 focus:ring-2 focus:ring-pink-500" data-shio="6">🐍 Ular</button>
+                            <button class="shio-btn px-2 py-2 text-xs border border-gray-300 rounded-lg hover:bg-cyan-100 focus:ring-2 focus:ring-cyan-500" data-shio="7">🐎 Kuda</button>
+                            <button class="shio-btn px-2 py-2 text-xs border border-gray-300 rounded-lg hover:bg-lime-100 focus:ring-2 focus:ring-lime-500" data-shio="8">🐐 Kambing</button>
+                            <button class="shio-btn px-2 py-2 text-xs border border-gray-300 rounded-lg hover:bg-orange-100 focus:ring-2 focus:ring-orange-500" data-shio="9">🐒 Monyet</button>
+                            <button class="shio-btn px-2 py-2 text-xs border border-gray-300 rounded-lg hover:bg-fuchsia-100 focus:ring-2 focus:ring-fuchsia-500" data-shio="10">🐓 Ayam</button>
+                            <button class="shio-btn px-2 py-2 text-xs border border-gray-300 rounded-lg hover:bg-emerald-100 focus:ring-2 focus:ring-emerald-500" data-shio="11">🐕 Anjing</button>
+                            <button class="shio-btn px-2 py-2 text-xs border border-gray-300 rounded-lg hover:bg-amber-100 focus:ring-2 focus:ring-amber-500" data-shio="12">🐷 Babi</button>
+                        </div>
+                        <button id="clearShio" class="mt-2 w-full px-4 py-2 bg-gray-500 text-white rounded-lg hover:bg-gray-600">Clear Shio</button>
+                    </div>
+
+                    <!-- Filter Jumlah -->
+                    <div class="mb-6">
+                        <label class="block text-sm font-medium text-gray-700 mb-2">Filter Jumlah 2D</label>
+                        <p class="text-xs text-gray-500 mb-3">Pilih jumlah digit untuk memangkas angka 2D (contoh: 12 = 1+2 = 3)</p>
+                        <div class="grid grid-cols-3 gap-2">
+                            <button class="jumlah-btn px-3 py-2 border border-gray-300 rounded-lg hover:bg-indigo-100 focus:ring-2 focus:ring-indigo-500 text-sm" data-jumlah="1">1</button>
+                            <button class="jumlah-btn px-3 py-2 border border-gray-300 rounded-lg hover:bg-indigo-100 focus:ring-2 focus:ring-indigo-500 text-sm" data-jumlah="2">2</button>
+                            <button class="jumlah-btn px-3 py-2 border border-gray-300 rounded-lg hover:bg-indigo-100 focus:ring-2 focus:ring-indigo-500 text-sm" data-jumlah="3">3</button>
+                            <button class="jumlah-btn px-3 py-2 border border-gray-300 rounded-lg hover:bg-indigo-100 focus:ring-2 focus:ring-indigo-500 text-sm" data-jumlah="4">4</button>
+                            <button class="jumlah-btn px-3 py-2 border border-gray-300 rounded-lg hover:bg-indigo-100 focus:ring-2 focus:ring-indigo-500 text-sm" data-jumlah="5">5</button>
+                            <button class="jumlah-btn px-3 py-2 border border-gray-300 rounded-lg hover:bg-indigo-100 focus:ring-2 focus:ring-indigo-500 text-sm" data-jumlah="6">6</button>
+                            <button class="jumlah-btn px-3 py-2 border border-gray-300 rounded-lg hover:bg-indigo-100 focus:ring-2 focus:ring-indigo-500 text-sm" data-jumlah="7">7</button>
+                            <button class="jumlah-btn px-3 py-2 border border-gray-300 rounded-lg hover:bg-indigo-100 focus:ring-2 focus:ring-indigo-500 text-sm" data-jumlah="8">8</button>
+                            <button class="jumlah-btn px-3 py-2 border border-gray-300 rounded-lg hover:bg-indigo-100 focus:ring-2 focus:ring-indigo-500 text-sm" data-jumlah="9">9</button>
+                        </div>
+                        <button id="clearJumlah" class="mt-2 w-full px-4 py-2 bg-gray-500 text-white rounded-lg hover:bg-gray-600">Clear Jumlah</button>
+                        <div id="jumlahInfo" class="mt-2 text-xs text-gray-600 hidden">
+                            <div class="bg-blue-50 p-2 rounded border">
+                                <strong>Contoh angka dengan jumlah yang dipilih:</strong>
+                                <div id="jumlahExamples" class="mt-1"></div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Angka Main -->
+                    <div class="mb-6">
+                        <label class="block text-sm font-medium text-gray-700 mb-2">Angka Main (Max 8 digit)</label>
+                        <input type="text" id="angkaMain" class="w-full px-4 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-transparent" placeholder="Contoh: 12345678" maxlength="8">
+                        <p class="text-xs text-gray-500 mt-1">Masukkan 1-8 digit angka main</p>
+                    </div>
+
+                    <!-- Validasi Angka Main -->
+                    <div class="mb-6">
+                        <label class="block text-sm font-medium text-gray-700 mb-2">Validasi Angka Main (Sistem Bertahap)</label>
+                        <div class="grid grid-cols-2 gap-2">
+                            <input type="text" id="valid1" class="px-3 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-green-500" placeholder="Valid 1" maxlength="8">
+                            <input type="text" id="valid2" class="px-3 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-green-500" placeholder="Valid 2" maxlength="8">
+                            <input type="text" id="valid3" class="px-3 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-green-500" placeholder="Valid 3" maxlength="8">
+                            <input type="text" id="valid4" class="px-3 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-green-500" placeholder="Valid 4" maxlength="8">
+                            <input type="text" id="valid5" class="px-3 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-green-500" placeholder="Valid 5" maxlength="8">
+                            <input type="text" id="valid6" class="px-3 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-green-500" placeholder="Valid 6" maxlength="8">
+                        </div>
+                        <p class="text-xs text-gray-500 mt-2">⚡ Sistem Bertahap: Valid 1 → Valid 2 → Valid 3... (Setiap tahap memangkas hasil sebelumnya)</p>
+                    </div>
+
+                    <button id="applyFilter" class="w-full bg-gradient-to-r from-blue-600 to-purple-600 hover:from-blue-700 hover:to-purple-700 text-white font-semibold py-3 px-6 rounded-lg transition duration-200">
+                        🔍 Terapkan Filter
+                    </button>
+                </div>
+
+                <!-- Input Angka 2D -->
+                <div class="bg-white rounded-xl shadow-lg p-6 mb-6">
+                    <h3 class="text-xl font-semibold text-gray-800 mb-4">🎯 Input Angka 2D</h3>
+                    <div class="mb-4">
+                        <label class="block text-sm font-medium text-gray-700 mb-2">Masukkan Angka 2D (pisahkan dengan koma atau spasi)</label>
+                        <textarea id="angka2D" class="w-full px-4 py-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-transparent" rows="4" placeholder="Contoh: 12, 34, 56, 78 atau 12 34 56 78"></textarea>
+                        <p class="text-xs text-gray-500 mt-1">Format: 12, 34, 56 atau 12 34 56</p>
+                    </div>
+                    <button id="validate2D" class="w-full bg-gradient-to-r from-green-600 to-teal-600 hover:from-green-700 hover:to-teal-700 text-white font-semibold py-2 px-4 rounded-lg transition duration-200">
+                        ✅ Validasi Angka 2D
+                    </button>
+                    <div id="validationResult" class="mt-4 hidden">
+                        <div class="bg-green-50 border border-green-200 rounded-lg p-3">
+                            <h4 class="font-semibold text-green-800 mb-2">Hasil Validasi:</h4>
+                            <div id="matchedNumbers" class="text-sm text-green-700"></div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Statistik -->
+                <div class="bg-white rounded-xl shadow-lg p-6">
+                    <h3 class="text-xl font-semibold text-gray-800 mb-4">📊 Statistik</h3>
+                    <div class="space-y-3">
+                        <div class="flex justify-between">
+                            <span class="text-gray-600">Total Angka:</span>
+                            <span id="totalAngka" class="font-semibold">100</span>
+                        </div>
+                        <div class="flex justify-between">
+                            <span class="text-gray-600">Setelah Filter:</span>
+                            <span id="filteredAngka" class="font-semibold text-blue-600">100</span>
+                        </div>
+                        <div class="flex justify-between">
+                            <span class="text-gray-600">Persentase:</span>
+                            <span id="persentase" class="font-semibold text-green-600">100%</span>
+                        </div>
+                        <div class="flex justify-between">
+                            <span class="text-gray-600">Match 2D:</span>
+                            <span id="match2D" class="font-semibold text-purple-600">0</span>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Panel Angka Terpangkas -->
+                <div class="bg-white rounded-xl shadow-lg p-6 mb-6">
+                    <h3 class="text-xl font-semibold text-gray-800 mb-4">❌ Angka Terpangkas</h3>
+                    <div id="crossedNumbers" class="space-y-3">
+                        <div class="text-sm text-gray-500 text-center py-4">
+                            Belum ada filter yang diterapkan
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Panel Angka Tersisa -->
+                <div class="bg-white rounded-xl shadow-lg p-6 mb-6">
+                    <h3 class="text-xl font-semibold text-gray-800 mb-4">✅ Angka Tersisa</h3>
+                    <div id="remainingNumbers" class="space-y-3">
+                        <div class="text-sm text-gray-500 text-center py-4">
+                            Belum ada filter yang diterapkan
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Tabel Rekap BBFS -->
+                <div class="bg-white rounded-xl shadow-lg p-6">
+                    <h3 class="text-xl font-semibold text-gray-800 mb-4">🎲 Rekap BBFS (Bolak-Balik Full Set)</h3>
+                    <div id="bbfsTable" class="space-y-4">
+                        <div class="text-sm text-gray-500 text-center py-4">
+                            Masukkan Angka Main dan Validasi untuk melihat rekap BBFS
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Tabel Shio -->
+            <div class="lg:col-span-2">
+                <div class="bg-white rounded-xl shadow-lg p-6">
+                    <div class="flex justify-between items-center mb-6">
+                        <h2 class="text-2xl font-semibold text-gray-800">🐲 Tabel Shio (00-99)</h2>
+                        <div class="text-sm text-gray-600">
+                            <span class="inline-block w-4 h-4 bg-yellow-200 border-2 border-yellow-500 mr-2"></span>
+                            Hasil Filter
+                        </div>
+                    </div>
+                    
+                    <div id="shioTable" class="grid grid-cols-10 gap-2">
+                        <!-- Tabel akan diisi oleh JavaScript -->
+                    </div>
+                </div>
+
+                <!-- Tabel Nomor Sering Keluar 2D -->
+                <div class="bg-white rounded-xl shadow-lg p-6 mt-6">
+                    <h3 class="text-xl font-semibold text-gray-800 mb-4">🔥 Nomor 2D Sering Keluar</h3>
+                    
+                    <!-- Tab Navigation -->
+                    <div class="flex space-x-1 mb-4">
+                        <button id="tab2DDepan" class="tab-btn active px-4 py-2 bg-blue-500 text-white rounded-lg text-sm font-medium">2D Depan</button>
+                        <button id="tab2DTengah" class="tab-btn px-4 py-2 bg-gray-200 text-gray-700 rounded-lg text-sm font-medium hover:bg-gray-300">2D Tengah</button>
+                        <button id="tab2DBelakang" class="tab-btn px-4 py-2 bg-gray-200 text-gray-700 rounded-lg text-sm font-medium hover:bg-gray-300">2D Belakang</button>
+                    </div>
+
+                    <!-- 2D Depan -->
+                    <div id="content2DDepan" class="tab-content">
+                        <h4 class="font-semibold text-gray-700 mb-3">Top 20 Nomor 2D Depan Terpanas 🔥</h4>
+                        <div class="grid grid-cols-5 gap-2">
+                            <div class="bg-red-100 border border-red-300 rounded-lg p-2 text-center">
+                                <div class="font-bold text-red-800">12</div>
+                                <div class="text-xs text-red-600">45x</div>
+                            </div>
+                            <div class="bg-red-100 border border-red-300 rounded-lg p-2 text-center">
+                                <div class="font-bold text-red-800">34</div>
+                                <div class="text-xs text-red-600">42x</div>
+                            </div>
+                            <div class="bg-red-100 border border-red-300 rounded-lg p-2 text-center">
+                                <div class="font-bold text-red-800">56</div>
+                                <div class="text-xs text-red-600">41x</div>
+                            </div>
+                            <div class="bg-red-100 border border-red-300 rounded-lg p-2 text-center">
+                                <div class="font-bold text-red-800">78</div>
+                                <div class="text-xs text-red-600">39x</div>
+                            </div>
+                            <div class="bg-red-100 border border-red-300 rounded-lg p-2 text-center">
+                                <div class="font-bold text-red-800">90</div>
+                                <div class="text-xs text-red-600">38x</div>
+                            </div>
+                            <div class="bg-orange-100 border border-orange-300 rounded-lg p-2 text-center">
+                                <div class="font-bold text-orange-800">23</div>
+                                <div class="text-xs text-orange-600">37x</div>
+                            </div>
+                            <div class="bg-orange-100 border border-orange-300 rounded-lg p-2 text-center">
+                                <div class="font-bold text-orange-800">45</div>
+                                <div class="text-xs text-orange-600">36x</div>
+                            </div>
+                            <div class="bg-orange-100 border border-orange-300 rounded-lg p-2 text-center">
+                                <div class="font-bold text-orange-800">67</div>
+                                <div class="text-xs text-orange-600">35x</div>
+                            </div>
+                            <div class="bg-orange-100 border border-orange-300 rounded-lg p-2 text-center">
+                                <div class="font-bold text-orange-800">89</div>
+                                <div class="text-xs text-orange-600">34x</div>
+                            </div>
+                            <div class="bg-orange-100 border border-orange-300 rounded-lg p-2 text-center">
+                                <div class="font-bold text-orange-800">01</div>
+                                <div class="text-xs text-orange-600">33x</div>
+                            </div>
+                            <div class="bg-yellow-100 border border-yellow-300 rounded-lg p-2 text-center">
+                                <div class="font-bold text-yellow-800">13</div>
+                                <div class="text-xs text-yellow-600">32x</div>
+                            </div>
+                            <div class="bg-yellow-100 border border-yellow-300 rounded-lg p-2 text-center">
+                                <div class="font-bold text-yellow-800">35</div>
+                                <div class="text-xs text-yellow-600">31x</div>
+                            </div>
+                            <div class="bg-yellow-100 border border-yellow-300 rounded-lg p-2 text-center">
+                                <div class="font-bold text-yellow-800">57</div>
+                                <div class="text-xs text-yellow-600">30x</div>
+                            </div>
+                            <div class="bg-yellow-100 border border-yellow-300 rounded-lg p-2 text-center">
+                                <div class="font-bold text-yellow-800">79</div>
+                                <div class="text-xs text-yellow-600">29x</div>
+                            </div>
+                            <div class="bg-yellow-100 border border-yellow-300 rounded-lg p-2 text-center">
+                                <div class="font-bold text-yellow-800">02</div>
+                                <div class="text-xs text-yellow-600">28x</div>
+                            </div>
+                            <div class="bg-green-100 border border-green-300 rounded-lg p-2 text-center">
+                                <div class="font-bold text-green-800">24</div>
+                                <div class="text-xs text-green-600">27x</div>
+                            </div>
+                            <div class="bg-green-100 border border-green-300 rounded-lg p-2 text-center">
+                                <div class="font-bold text-green-800">46</div>
+                                <div class="text-xs text-green-600">26x</div>
+                            </div>
+                            <div class="bg-green-100 border border-green-300 rounded-lg p-2 text-center">
+                                <div class="font-bold text-green-800">68</div>
+                                <div class="text-xs text-green-600">25x</div>
+                            </div>
+                            <div class="bg-green-100 border border-green-300 rounded-lg p-2 text-center">
+                                <div class="font-bold text-green-800">80</div>
+                                <div class="text-xs text-green-600">24x</div>
+                            </div>
+                            <div class="bg-green-100 border border-green-300 rounded-lg p-2 text-center">
+                                <div class="font-bold text-green-800">14</div>
+                                <div class="text-xs text-green-600">23x</div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- 2D Tengah -->
+                    <div id="content2DTengah" class="tab-content hidden">
+                        <h4 class="font-semibold text-gray-700 mb-3">Top 20 Nomor 2D Tengah Terpanas 🔥</h4>
+                        <div class="grid grid-cols-5 gap-2">
+                            <div class="bg-red-100 border border-red-300 rounded-lg p-2 text-center">
+                                <div class="font-bold text-red-800">25</div>
+                                <div class="text-xs text-red-600">48x</div>
+                            </div>
+                            <div class="bg-red-100 border border-red-300 rounded-lg p-2 text-center">
+                                <div class="font-bold text-red-800">47</div>
+                                <div class="text-xs text-red-600">44x</div>
+                            </div>
+                            <div class="bg-red-100 border border-red-300 rounded-lg p-2 text-center">
+                                <div class="font-bold text-red-800">69</div>
+                                <div class="text-xs text-red-600">43x</div>
+                            </div>
+                            <div class="bg-red-100 border border-red-300 rounded-lg p-2 text-center">
+                                <div class="font-bold text-red-800">81</div>
+                                <div class="text-xs text-red-600">41x</div>
+                            </div>
+                            <div class="bg-red-100 border border-red-300 rounded-lg p-2 text-center">
+                                <div class="font-bold text-red-800">03</div>
+                                <div class="text-xs text-red-600">40x</div>
+                            </div>
+                            <div class="bg-orange-100 border border-orange-300 rounded-lg p-2 text-center">
+                                <div class="font-bold text-orange-800">36</div>
+                                <div class="text-xs text-orange-600">39x</div>
+                            </div>
+                            <div class="bg-orange-100 border border-orange-300 rounded-lg p-2 text-center">
+                                <div class="font-bold text-orange-800">58</div>
+                                <div class="text-xs text-orange-600">38x</div>
+                            </div>
+                            <div class="bg-orange-100 border border-orange-300 rounded-lg p-2 text-center">
+                                <div class="font-bold text-orange-800">70</div>
+                                <div class="text-xs text-orange-600">37x</div>
+                            </div>
+                            <div class="bg-orange-100 border border-orange-300 rounded-lg p-2 text-center">
+                                <div class="font-bold text-orange-800">92</div>
+                                <div class="text-xs text-orange-600">36x</div>
+                            </div>
+                            <div class="bg-orange-100 border border-orange-300 rounded-lg p-2 text-center">
+                                <div class="font-bold text-orange-800">14</div>
+                                <div class="text-xs text-orange-600">35x</div>
+                            </div>
+                            <div class="bg-yellow-100 border border-yellow-300 rounded-lg p-2 text-center">
+                                <div class="font-bold text-yellow-800">27</div>
+                                <div class="text-xs text-yellow-600">34x</div>
+                            </div>
+                            <div class="bg-yellow-100 border border-yellow-300 rounded-lg p-2 text-center">
+                                <div class="font-bold text-yellow-800">49</div>
+                                <div class="text-xs text-yellow-600">33x</div>
+                            </div>
+                            <div class="bg-yellow-100 border border-yellow-300 rounded-lg p-2 text-center">
+                                <div class="font-bold text-yellow-800">61</div>
+                                <div class="text-xs text-yellow-600">32x</div>
+                            </div>
+                            <div class="bg-yellow-100 border border-yellow-300 rounded-lg p-2 text-center">
+                                <div class="font-bold text-yellow-800">83</div>
+                                <div class="text-xs text-yellow-600">31x</div>
+                            </div>
+                            <div class="bg-yellow-100 border border-yellow-300 rounded-lg p-2 text-center">
+                                <div class="font-bold text-yellow-800">05</div>
+                                <div class="text-xs text-yellow-600">30x</div>
+                            </div>
+                            <div class="bg-green-100 border border-green-300 rounded-lg p-2 text-center">
+                                <div class="font-bold text-green-800">18</div>
+                                <div class="text-xs text-green-600">29x</div>
+                            </div>
+                            <div class="bg-green-100 border border-green-300 rounded-lg p-2 text-center">
+                                <div class="font-bold text-green-800">30</div>
+                                <div class="text-xs text-green-600">28x</div>
+                            </div>
+                            <div class="bg-green-100 border border-green-300 rounded-lg p-2 text-center">
+                                <div class="font-bold text-green-800">52</div>
+                                <div class="text-xs text-green-600">27x</div>
+                            </div>
+                            <div class="bg-green-100 border border-green-300 rounded-lg p-2 text-center">
+                                <div class="font-bold text-green-800">74</div>
+                                <div class="text-xs text-green-600">26x</div>
+                            </div>
+                            <div class="bg-green-100 border border-green-300 rounded-lg p-2 text-center">
+                                <div class="font-bold text-green-800">96</div>
+                                <div class="text-xs text-green-600">25x</div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- 2D Belakang -->
+                    <div id="content2DBelakang" class="tab-content hidden">
+                        <h4 class="font-semibold text-gray-700 mb-3">Top 20 Nomor 2D Belakang Terpanas 🔥</h4>
+                        <div class="grid grid-cols-5 gap-2">
+                            <div class="bg-red-100 border border-red-300 rounded-lg p-2 text-center">
+                                <div class="font-bold text-red-800">17</div>
+                                <div class="text-xs text-red-600">52x</div>
+                            </div>
+                            <div class="bg-red-100 border border-red-300 rounded-lg p-2 text-center">
+                                <div class="font-bold text-red-800">39</div>
+                                <div class="text-xs text-red-600">49x</div>
+                            </div>
+                            <div class="bg-red-100 border border-red-300 rounded-lg p-2 text-center">
+                                <div class="font-bold text-red-800">51</div>
+                                <div class="text-xs text-red-600">47x</div>
+                            </div>
+                            <div class="bg-red-100 border border-red-300 rounded-lg p-2 text-center">
+                                <div class="font-bold text-red-800">73</div>
+                                <div class="text-xs text-red-600">45x</div>
+                            </div>
+                            <div class="bg-red-100 border border-red-300 rounded-lg p-2 text-center">
+                                <div class="font-bold text-red-800">95</div>
+                                <div class="text-xs text-red-600">44x</div>
+                            </div>
+                            <div class="bg-orange-100 border border-orange-300 rounded-lg p-2 text-center">
+                                <div class="font-bold text-orange-800">28</div>
+                                <div class="text-xs text-orange-600">42x</div>
+                            </div>
+                            <div class="bg-orange-100 border border-orange-300 rounded-lg p-2 text-center">
+                                <div class="font-bold text-orange-800">40</div>
+                                <div class="text-xs text-orange-600">41x</div>
+                            </div>
+                            <div class="bg-orange-100 border border-orange-300 rounded-lg p-2 text-center">
+                                <div class="font-bold text-orange-800">62</div>
+                                <div class="text-xs text-orange-600">40x</div>
+                            </div>
+                            <div class="bg-orange-100 border border-orange-300 rounded-lg p-2 text-center">
+                                <div class="font-bold text-orange-800">84</div>
+                                <div class="text-xs text-orange-600">39x</div>
+                            </div>
+                            <div class="bg-orange-100 border border-orange-300 rounded-lg p-2 text-center">
+                                <div class="font-bold text-orange-800">06</div>
+                                <div class="text-xs text-orange-600">38x</div>
+                            </div>
+                            <div class="bg-yellow-100 border border-yellow-300 rounded-lg p-2 text-center">
+                                <div class="font-bold text-yellow-800">19</div>
+                                <div class="text-xs text-yellow-600">37x</div>
+                            </div>
+                            <div class="bg-yellow-100 border border-yellow-300 rounded-lg p-2 text-center">
+                                <div class="font-bold text-yellow-800">31</div>
+                                <div class="text-xs text-yellow-600">36x</div>
+                            </div>
+                            <div class="bg-yellow-100 border border-yellow-300 rounded-lg p-2 text-center">
+                                <div class="font-bold text-yellow-800">53</div>
+                                <div class="text-xs text-yellow-600">35x</div>
+                            </div>
+                            <div class="bg-yellow-100 border border-yellow-300 rounded-lg p-2 text-center">
+                                <div class="font-bold text-yellow-800">75</div>
+                                <div class="text-xs text-yellow-600">34x</div>
+                            </div>
+                            <div class="bg-yellow-100 border border-yellow-300 rounded-lg p-2 text-center">
+                                <div class="font-bold text-yellow-800">97</div>
+                                <div class="text-xs text-yellow-600">33x</div>
+                            </div>
+                            <div class="bg-green-100 border border-green-300 rounded-lg p-2 text-center">
+                                <div class="font-bold text-green-800">20</div>
+                                <div class="text-xs text-green-600">32x</div>
+                            </div>
+                            <div class="bg-green-100 border border-green-300 rounded-lg p-2 text-center">
+                                <div class="font-bold text-green-800">42</div>
+                                <div class="text-xs text-green-600">31x</div>
+                            </div>
+                            <div class="bg-green-100 border border-green-300 rounded-lg p-2 text-center">
+                                <div class="font-bold text-green-800">64</div>
+                                <div class="text-xs text-green-600">30x</div>
+                            </div>
+                            <div class="bg-green-100 border border-green-300 rounded-lg p-2 text-center">
+                                <div class="font-bold text-green-800">86</div>
+                                <div class="text-xs text-green-600">29x</div>
+                            </div>
+                            <div class="bg-green-100 border border-green-300 rounded-lg p-2 text-center">
+                                <div class="font-bold text-green-800">08</div>
+                                <div class="text-xs text-green-600">28x</div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Legenda Shio -->
+                <div class="bg-white rounded-xl shadow-lg p-6 mt-6">
+                    <h3 class="text-xl font-semibold text-gray-800 mb-4">🎨 Legenda Shio</h3>
+                    <div class="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-3">
+                        <div class="flex items-center space-x-2">
+                            <div class="w-6 h-6 shio-1 border border-gray-300 rounded"></div>
+                            <span class="text-sm">🐭 Tikus</span>
+                        </div>
+                        <div class="flex items-center space-x-2">
+                            <div class="w-6 h-6 shio-2 border border-gray-300 rounded"></div>
+                            <span class="text-sm">🐂 Kerbau</span>
+                        </div>
+                        <div class="flex items-center space-x-2">
+                            <div class="w-6 h-6 shio-3 border border-gray-300 rounded"></div>
+                            <span class="text-sm">🐅 Harimau</span>
+                        </div>
+                        <div class="flex items-center space-x-2">
+                            <div class="w-6 h-6 shio-4 border border-gray-300 rounded"></div>
+                            <span class="text-sm">🐰 Kelinci</span>
+                        </div>
+                        <div class="flex items-center space-x-2">
+                            <div class="w-6 h-6 shio-5 border border-gray-300 rounded"></div>
+                            <span class="text-sm">🐉 Naga</span>
+                        </div>
+                        <div class="flex items-center space-x-2">
+                            <div class="w-6 h-6 shio-6 border border-gray-300 rounded"></div>
+                            <span class="text-sm">🐍 Ular</span>
+                        </div>
+                        <div class="flex items-center space-x-2">
+                            <div class="w-6 h-6 shio-7 border border-gray-300 rounded"></div>
+                            <span class="text-sm">🐎 Kuda</span>
+                        </div>
+                        <div class="flex items-center space-x-2">
+                            <div class="w-6 h-6 shio-8 border border-gray-300 rounded"></div>
+                            <span class="text-sm">🐐 Kambing</span>
+                        </div>
+                        <div class="flex items-center space-x-2">
+                            <div class="w-6 h-6 shio-9 border border-gray-300 rounded"></div>
+                            <span class="text-sm">🐒 Monyet</span>
+                        </div>
+                        <div class="flex items-center space-x-2">
+                            <div class="w-6 h-6 shio-10 border border-gray-300 rounded"></div>
+                            <span class="text-sm">🐓 Ayam</span>
+                        </div>
+                        <div class="flex items-center space-x-2">
+                            <div class="w-6 h-6 shio-11 border border-gray-300 rounded"></div>
+                            <span class="text-sm">🐕 Anjing</span>
+                        </div>
+                        <div class="flex items-center space-x-2">
+                            <div class="w-6 h-6 shio-12 border border-gray-300 rounded"></div>
+                            <span class="text-sm">🐷 Babi</span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <script>
+        // Data shio berdasarkan angka
+        const shioData = {
+            1: [1, 13, 25, 37, 49, 61, 73, 85, 97], // Tikus
+            2: [2, 14, 26, 38, 50, 62, 74, 86, 98], // Kerbau
+            3: [3, 15, 27, 39, 51, 63, 75, 87, 99], // Harimau
+            4: [4, 16, 28, 40, 52, 64, 76, 88, 0],  // Kelinci
+            5: [5, 17, 29, 41, 53, 65, 77, 89],     // Naga
+            6: [6, 18, 30, 42, 54, 66, 78, 90],     // Ular
+            7: [7, 19, 31, 43, 55, 67, 79, 91],     // Kuda
+            8: [8, 20, 32, 44, 56, 68, 80, 92],     // Kambing
+            9: [9, 21, 33, 45, 57, 69, 81, 93],     // Monyet
+            10: [10, 22, 34, 46, 58, 70, 82, 94],   // Ayam
+            11: [11, 23, 35, 47, 59, 71, 83, 95],   // Anjing
+            12: [12, 24, 36, 48, 60, 72, 84, 96]    // Babi
+        };
+
+        // Function to generate predictions based on last result
+        function generatePredictions(lastResult) {
+            const result2D = lastResult.result2D;
+            const digit1 = parseInt(result2D[0]);
+            const digit2 = parseInt(result2D[1]);
+            
+            // Generate predictions based on last result patterns
+            const predictions = {
+                angkaMainHarian: '',
+                angkaMainMingguan: '',
+                bbfs: '',
+                bijiOnHarian: '',
+                bijiOnMingguan: '',
+                ekorMainHarian: '',
+                ekorMainMingguan: '',
+                kepalaMainHarian: '',
+                kepalaMainMingguan: '',
+                asMainHarian: '',
+                asMainMingguan: '',
+                kopMainHarian: '',
+                kopMainMingguan: '',
+                prediksi2D: [],
+                prediksiShio: [],
+                prediksiEkor: [],
+                prediksiKepala: []
+            };
+            
+            // Generate angka main based on last result
+            const baseDigits = [digit1, digit2];
+            const complementDigits = [];
+            
+            // Add complement digits (inverse pattern)
+            baseDigits.forEach(d => {
+                complementDigits.push((d + 5) % 10);
+                complementDigits.push((d + 3) % 10);
+                complementDigits.push((d + 7) % 10);
+            });
+            
+            const allDigits = [...new Set([...baseDigits, ...complementDigits])].sort();
+            predictions.angkaMainHarian = allDigits.slice(0, 5).join('');
+            predictions.angkaMainMingguan = allDigits.slice(2, 7).join('');
+            predictions.bbfs = allDigits.join('');
+            
+            // Generate biji on
+            const bijiHarian = allDigits.filter((_, i) => i % 2 === 0);
+            const bijiMingguan = allDigits.filter((_, i) => i % 2 === 1);
+            predictions.bijiOnHarian = bijiHarian.join(',');
+            predictions.bijiOnMingguan = bijiMingguan.join(',');
+            
+            // Generate ekor predictions
+            const ekorHarian = [(digit2 + 1) % 10, (digit2 + 3) % 10, (digit2 + 5) % 10];
+            const ekorMingguan = [(digit2 + 2) % 10, (digit2 + 4) % 10, (digit2 + 6) % 10];
+            predictions.ekorMainHarian = ekorHarian.join(',');
+            predictions.ekorMainMingguan = ekorMingguan.join(',');
+            
+            // Generate kepala predictions
+            const kepalaHarian = [(digit1 + 1) % 10, (digit1 + 3) % 10, (digit1 + 5) % 10];
+            const kepalaMingguan = [(digit1 + 2) % 10, (digit1 + 4) % 10, (digit1 + 6) % 10];
+            predictions.kepalaMainHarian = kepalaHarian.join(',');
+            predictions.kepalaMainMingguan = kepalaMingguan.join(',');
+            
+            // Generate as and kop for 4D
+            const asHarian = [(digit1 + 2) % 10, (digit1 + 4) % 10, (digit1 + 6) % 10];
+            const asMingguan = [(digit1 + 1) % 10, (digit1 + 5) % 10, (digit1 + 7) % 10];
+            predictions.asMainHarian = asHarian.join(',');
+            predictions.asMainMingguan = asMingguan.join(',');
+            
+            const kopHarian = [(digit2 + 3) % 10, (digit2 + 5) % 10, (digit2 + 7) % 10];
+            const kopMingguan = [(digit2 + 1) % 10, (digit2 + 4) % 10, (digit2 + 8) % 10];
+            predictions.kopMainHarian = kopHarian.join(',');
+            predictions.kopMainMingguan = kopMingguan.join(',');
+            
+            // Generate 2D predictions
+            for (let i = 0; i < 10; i++) {
+                const pred1 = ((digit1 + i) % 10).toString() + ((digit2 + i) % 10).toString();
+                const pred2 = ((digit1 + i + 1) % 10).toString() + ((digit2 + i + 2) % 10).toString();
+                const pred3 = ((digit1 + i + 2) % 10).toString() + ((digit2 + i + 3) % 10).toString();
+                predictions.prediksi2D.push(pred1, pred2, pred3);
+            }
+            predictions.prediksi2D = [...new Set(predictions.prediksi2D)].slice(0, 15);
+            
+            // Generate shio predictions based on 2D result
+            const currentShio = getShioNumber(parseInt(result2D));
+            predictions.prediksiShio = [
+                currentShio,
+                (currentShio % 12) + 1,
+                ((currentShio + 1) % 12) + 1,
+                ((currentShio + 2) % 12) + 1,
+                ((currentShio + 5) % 12) + 1
+            ];
+            
+            // Generate ekor and kepala predictions
+            predictions.prediksiEkor = ekorHarian.concat(ekorMingguan);
+            predictions.prediksiKepala = kepalaHarian.concat(kepalaMingguan);
+            
+            return predictions;
+        }
+
+        // Data pasaran dengan angka main harian dan mingguan
+        const pasaranData = {
+            sgp: { 
+                name: '🇸🇬 SGP',
+                jadwal: 'Senin, Rabu, Kamis, Sabtu, Minggu',
+                zona: 'GMT+8',
+                shioFreq: { 1: 15, 2: 12, 3: 18, 4: 14, 5: 20, 6: 16, 7: 13, 8: 17, 9: 19, 10: 11, 11: 15, 12: 14 },
+                resultTerakhir: {
+                    tanggal: new Date().toISOString().split('T')[0],
+                    result4D: '7429',
+                    result3D: '429',
+                    result2D: '29',
+                    periode: 'SGP-2024-015'
+                }
+            },
+            sydney_loto: { 
+                name: '🇦🇺 SYDNEY LOTO',
+                jadwal: 'Setiap Hari',
+                zona: 'GMT+10',
+                shioFreq: { 1: 17, 2: 14, 3: 16, 4: 18, 5: 15, 6: 19, 7: 12, 8: 16, 9: 14, 10: 17, 11: 13, 12: 15 },
+                resultTerakhir: {
+                    tanggal: new Date().toISOString().split('T')[0],
+                    result4D: '8156',
+                    result3D: '156',
+                    result2D: '56',
+                    periode: 'SYD-LOTO-2024-015'
+                }
+            },
+            sydney_pools: { 
+                name: '🇦🇺 SYDNEY POOLS',
+                jadwal: 'Setiap Hari',
+                zona: 'GMT+10',
+                shioFreq: { 1: 16, 2: 15, 3: 14, 4: 17, 5: 18, 6: 13, 7: 19, 8: 12, 9: 16, 10: 15, 11: 17, 12: 14 },
+                resultTerakhir: {
+                    tanggal: new Date().toISOString().split('T')[0],
+                    result4D: '3947',
+                    result3D: '947',
+                    result2D: '47',
+                    periode: 'SYD-POOLS-2024-015'
+                }
+            },
+            bullseye: { 
+                name: '🎯 BULLSEYE',
+                jadwal: 'Setiap Hari',
+                zona: 'GMT+0',
+                shioFreq: { 1: 14, 2: 16, 3: 17, 4: 15, 5: 13, 6: 18, 7: 16, 8: 19, 9: 12, 10: 14, 11: 16, 12: 17 },
+                resultTerakhir: {
+                    tanggal: new Date().toISOString().split('T')[0],
+                    result4D: '6082',
+                    result3D: '082',
+                    result2D: '82',
+                    periode: 'BULL-2024-015'
+                }
+            },
+            china: { 
+                name: '🇨🇳 CHINA',
+                jadwal: 'Selasa, Kamis, Sabtu',
+                zona: 'GMT+8',
+                shioFreq: { 1: 18, 2: 13, 3: 15, 4: 16, 5: 17, 6: 14, 7: 15, 8: 18, 9: 16, 10: 19, 11: 12, 12: 13 },
+                resultTerakhir: {
+                    tanggal: new Date(Date.now() - 24*60*60*1000).toISOString().split('T')[0],
+                    result4D: '5913',
+                    result3D: '913',
+                    result2D: '13',
+                    periode: 'CHN-2024-014'
+                }
+            },
+            taiwan: { 
+                name: '🇹🇼 TAIWAN',
+                jadwal: 'Senin, Rabu, Jumat',
+                zona: 'GMT+8',
+                shioFreq: { 1: 15, 2: 17, 3: 13, 4: 19, 5: 14, 6: 16, 7: 18, 8: 15, 9: 17, 10: 12, 11: 14, 12: 16 },
+                resultTerakhir: {
+                    tanggal: new Date().toISOString().split('T')[0],
+                    result4D: '7024',
+                    result3D: '024',
+                    result2D: '24',
+                    periode: 'TWN-2024-015'
+                }
+            },
+            cambodia: { 
+                name: '🇰🇭 CAMBODIA',
+                jadwal: 'Setiap Hari',
+                zona: 'GMT+7',
+                shioFreq: { 1: 16, 2: 14, 3: 18, 4: 15, 5: 17, 6: 13, 7: 19, 8: 16, 9: 15, 10: 18, 11: 14, 12: 17 },
+                resultTerakhir: {
+                    tanggal: new Date().toISOString().split('T')[0],
+                    result4D: '8136',
+                    result3D: '136',
+                    result2D: '36',
+                    periode: 'CAM-2024-015'
+                }
+            },
+            hk_loto: { 
+                name: '🇭🇰 HK LOTO',
+                jadwal: 'Setiap Hari',
+                zona: 'GMT+8',
+                shioFreq: { 1: 19, 2: 15, 3: 17, 4: 14, 5: 16, 6: 18, 7: 13, 8: 15, 9: 17, 10: 16, 11: 18, 12: 14 },
+                resultTerakhir: {
+                    tanggal: new Date().toISOString().split('T')[0],
+                    result4D: '9247',
+                    result3D: '247',
+                    result2D: '47',
+                    periode: 'HK-LOTO-2024-015'
+                }
+            },
+            hk_pools: { 
+                name: '🇭🇰 HK POOLS',
+                jadwal: 'Setiap Hari',
+                zona: 'GMT+8',
+                shioFreq: { 1: 17, 2: 16, 3: 15, 4: 18, 5: 14, 6: 17, 7: 15, 8: 19, 9: 16, 10: 14, 11: 17, 12: 15 },
+                resultTerakhir: {
+                    tanggal: new Date().toISOString().split('T')[0],
+                    result4D: '0358',
+                    result3D: '358',
+                    result2D: '58',
+                    periode: 'HK-POOLS-2024-015'
+                }
+            },
+            carolina_day: { 
+                name: '🇺🇸 CAROLINA DAY',
+                jadwal: 'Setiap Hari',
+                zona: 'GMT-5',
+                shioFreq: { 1: 15, 2: 18, 3: 16, 4: 17, 5: 15, 6: 14, 7: 18, 8: 16, 9: 17, 10: 15, 11: 19, 12: 16 },
+                resultTerakhir: {
+                    tanggal: new Date().toISOString().split('T')[0],
+                    result4D: '1469',
+                    result3D: '469',
+                    result2D: '69',
+                    periode: 'CAR-DAY-2024-015'
+                }
+            },
+            oregon_3: { 
+                name: '🇺🇸 OREGON 3',
+                jadwal: '03:00 WIB',
+                zona: 'GMT-8',
+                shioFreq: { 1: 16, 2: 17, 3: 14, 4: 15, 5: 18, 6: 16, 7: 17, 8: 14, 9: 18, 10: 16, 11: 15, 12: 17 },
+                resultTerakhir: {
+                    tanggal: new Date().toISOString().split('T')[0],
+                    result4D: '2075',
+                    result3D: '075',
+                    result2D: '75',
+                    periode: 'ORE-03-2024-015'
+                }
+            },
+            oregon_6: { 
+                name: '🇺🇸 OREGON 6',
+                jadwal: '06:00 WIB',
+                zona: 'GMT-8',
+                shioFreq: { 1: 18, 2: 15, 3: 16, 4: 17, 5: 14, 6: 18, 7: 16, 8: 15, 9: 17, 10: 18, 11: 14, 12: 16 },
+                resultTerakhir: {
+                    tanggal: new Date().toISOString().split('T')[0],
+                    result4D: '3186',
+                    result3D: '186',
+                    result2D: '86',
+                    periode: 'ORE-06-2024-015'
+                }
+            },
+            oregon_9: { 
+                name: '🇺🇸 OREGON 9',
+                jadwal: '09:00 WIB',
+                zona: 'GMT-8',
+                shioFreq: { 1: 17, 2: 16, 3: 18, 4: 14, 5: 15, 6: 17, 7: 18, 8: 16, 9: 14, 10: 17, 11: 15, 12: 18 },
+                resultTerakhir: {
+                    tanggal: new Date().toISOString().split('T')[0],
+                    result4D: '4297',
+                    result3D: '297',
+                    result2D: '97',
+                    periode: 'ORE-09-2024-015'
+                }
+            },
+            oregon_12: { 
+                name: '🇺🇸 OREGON 12',
+                jadwal: '12:00 WIB',
+                zona: 'GMT-8',
+                shioFreq: { 1: 15, 2: 17, 3: 16, 4: 18, 5: 17, 6: 15, 7: 14, 8: 18, 9: 16, 10: 15, 11: 17, 12: 14 },
+                resultTerakhir: {
+                    tanggal: new Date().toISOString().split('T')[0],
+                    result4D: '5308',
+                    result3D: '308',
+                    result2D: '08',
+                    periode: 'ORE-12-2024-015'
+                }
+            },
+            kentucky_midday: { 
+                name: '🇺🇸 KENTUCKY MIDDAY',
+                jadwal: 'Setiap Hari 12:00',
+                zona: 'GMT-5',
+                shioFreq: { 1: 16, 2: 15, 3: 17, 4: 16, 5: 18, 6: 14, 7: 17, 8: 15, 9: 18, 10: 17, 11: 16, 12: 15 },
+                resultTerakhir: {
+                    tanggal: new Date().toISOString().split('T')[0],
+                    result4D: '6419',
+                    result3D: '419',
+                    result2D: '19',
+                    periode: 'KEN-MID-2024-015'
+                }
+            },
+            florida_midday: { 
+                name: '🇺🇸 FLORIDA MIDDAY',
+                jadwal: 'Setiap Hari 12:30',
+                zona: 'GMT-5',
+                shioFreq: { 1: 18, 2: 16, 3: 15, 4: 17, 5: 16, 6: 18, 7: 15, 8: 17, 9: 14, 10: 18, 11: 16, 12: 17 },
+                resultTerakhir: {
+                    tanggal: new Date().toISOString().split('T')[0],
+                    result4D: '7520',
+                    result3D: '520',
+                    result2D: '20',
+                    periode: 'FLO-MID-2024-015'
+                }
+            },
+            japan: { 
+                name: '🇯🇵 JAPAN',
+                jadwal: 'Senin, Rabu, Sabtu',
+                zona: 'GMT+9',
+                shioFreq: { 1: 17, 2: 18, 3: 16, 4: 15, 5: 17, 6: 16, 7: 18, 8: 14, 9: 17, 10: 15, 11: 18, 12: 16 },
+                resultTerakhir: {
+                    tanggal: new Date(Date.now() - 2*24*60*60*1000).toISOString().split('T')[0],
+                    result4D: '8631',
+                    result3D: '631',
+                    result2D: '31',
+                    periode: 'JPN-2024-013'
+                }
+            },
+            ttm_p1: { 
+                name: '🎲 TTM P1',
+                jadwal: 'Periode 1',
+                zona: 'GMT+7',
+                shioFreq: { 1: 16, 2: 17, 3: 18, 4: 16, 5: 15, 6: 17, 7: 16, 8: 18, 9: 15, 10: 17, 11: 16, 12: 18 },
+                resultTerakhir: {
+                    tanggal: new Date().toISOString().split('T')[0],
+                    result4D: '9742',
+                    result3D: '742',
+                    result2D: '42',
+                    periode: 'TTM-P1-2024-015'
+                }
+            },
+            ttm_p2: { 
+                name: '🎲 TTM P2',
+                jadwal: 'Periode 2',
+                zona: 'GMT+7',
+                shioFreq: { 1: 15, 2: 16, 3: 17, 4: 18, 5: 16, 6: 15, 7: 17, 8: 16, 9: 18, 10: 16, 11: 17, 12: 15 },
+                resultTerakhir: {
+                    tanggal: new Date().toISOString().split('T')[0],
+                    result4D: '0853',
+                    result3D: '853',
+                    result2D: '53',
+                    periode: 'TTM-P2-2024-015'
+                }
+            },
+            ttm_p3: { 
+                name: '🎲 TTM P3',
+                jadwal: 'Periode 3',
+                zona: 'GMT+7',
+                shioFreq: { 1: 17, 2: 15, 3: 16, 4: 17, 5: 18, 6: 16, 7: 15, 8: 17, 9: 16, 10: 18, 11: 15, 12: 17 },
+                resultTerakhir: {
+                    tanggal: new Date().toISOString().split('T')[0],
+                    result4D: '1964',
+                    result3D: '964',
+                    result2D: '64',
+                    periode: 'TTM-P3-2024-015'
+                }
+            },
+            ttm_p4: { 
+                name: '🎲 TTM P4',
+                jadwal: 'Periode 4',
+                zona: 'GMT+7',
+                shioFreq: { 1: 18, 2: 17, 3: 15, 4: 16, 5: 17, 6: 18, 7: 16, 8: 15, 9: 17, 10: 16, 11: 18, 12: 17 },
+                resultTerakhir: {
+                    tanggal: new Date().toISOString().split('T')[0],
+                    result4D: '2075',
+                    result3D: '075',
+                    result2D: '75',
+                    periode: 'TTM-P4-2024-015'
+                }
+            },
+            ttm_p5: { 
+                name: '🎲 TTM P5',
+                jadwal: 'Periode 5',
+                zona: 'GMT+7',
+                shioFreq: { 1: 16, 2: 18, 3: 17, 4: 15, 5: 16, 6: 17, 7: 18, 8: 17, 9: 15, 10: 16, 11: 17, 12: 18 },
+                resultTerakhir: {
+                    tanggal: new Date().toISOString().split('T')[0],
+                    result4D: '3186',
+                    result3D: '186',
+                    result2D: '86',
+                    periode: 'TTM-P5-2024-015'
+                }
+            },
+            pcso: { 
+                name: '🇵🇭 PCSO',
+                jadwal: 'Setiap Hari',
+                zona: 'GMT+8',
+                shioFreq: { 1: 17, 2: 16, 3: 18, 4: 17, 5: 15, 6: 16, 7: 17, 8: 18, 9: 16, 10: 17, 11: 15, 12: 16 },
+                resultTerakhir: {
+                    tanggal: new Date().toISOString().split('T')[0],
+                    result4D: '4297',
+                    result3D: '297',
+                    result2D: '97',
+                    periode: 'PCSO-2024-015'
+                }
+            },
+            florida_evening: { 
+                name: '🇺🇸 FLORIDA EVENING',
+                jadwal: 'Setiap Hari 19:30',
+                zona: 'GMT-5',
+                shioFreq: { 1: 15, 2: 17, 3: 16, 4: 18, 5: 17, 6: 15, 7: 16, 8: 17, 9: 18, 10: 15, 11: 16, 12: 17 },
+                resultTerakhir: {
+                    tanggal: new Date().toISOString().split('T')[0],
+                    result4D: '5308',
+                    result3D: '308',
+                    result2D: '08',
+                    periode: 'FLO-EVE-2024-015'
+                }
+            },
+            kentucky_evening: { 
+                name: '🇺🇸 KENTUCKY EVENING',
+                jadwal: 'Setiap Hari 22:00',
+                zona: 'GMT-5',
+                shioFreq: { 1: 18, 2: 15, 3: 17, 4: 16, 5: 18, 6: 17, 7: 15, 8: 16, 9: 17, 10: 18, 11: 17, 12: 15 },
+                resultTerakhir: {
+                    tanggal: new Date().toISOString().split('T')[0],
+                    result4D: '6419',
+                    result3D: '419',
+                    result2D: '19',
+                    periode: 'KEN-EVE-2024-015'
+                }
+            }
+        };
+
+        // Data nomor 2D sering keluar
+        const hotNumbers2D = {
+            depan: ['12', '34', '56', '78', '90', '23', '45', '67', '89', '01', '13', '35', '57', '79', '02', '24', '46', '68', '80', '14'],
+            tengah: ['25', '47', '69', '81', '03', '36', '58', '70', '92', '14', '27', '49', '61', '83', '05', '18', '30', '52', '74', '96'],
+            belakang: ['17', '39', '51', '73', '95', '28', '40', '62', '84', '06', '19', '31', '53', '75', '97', '20', '42', '64', '86', '08']
+        };
+
+        let selectedEkor = [];
+        let selectedShio = [];
+        let selectedJumlah = [];
+        let input2DNumbers = [];
+        let crossedNumbersData = {
+            angkaMain: [],
+            valid1: [],
+            valid2: [],
+            valid3: [],
+            valid4: [],
+            valid5: [],
+            valid6: []
+        };
+        let remainingNumbersData = {
+            initial: [],
+            afterAngkaMain: [],
+            afterValid1: [],
+            afterValid2: [],
+            afterValid3: [],
+            afterValid4: [],
+            afterValid5: [],
+            afterValid6: []
+        };
+        let currentFilter = {
+            pasaran: 'all',
+            ekor: [],
+            shio: [],
+            jumlah: [],
+            angkaMain: '',
+            validAngka: [],
+            input2D: []
+        };
+
+        // Inisialisasi tabel
+        function initTable() {
+            const table = document.getElementById('shioTable');
+            table.innerHTML = '';
+
+            for (let i = 0; i <= 99; i++) {
+                const cell = document.createElement('div');
+                const num = i.toString().padStart(2, '0');
+                const shioNum = getShioNumber(i);
+                
+                cell.className = `shio-cell shio-${shioNum} border border-gray-300 rounded-lg p-3 text-center font-semibold cursor-pointer hover:shadow-lg`;
+                cell.innerHTML = `
+                    <div class="text-lg">${num}</div>
+                    <div class="text-xs text-gray-600">Shio ${shioNum}</div>
+                `;
+                cell.dataset.number = i;
+                cell.dataset.shio = shioNum;
+                
+                table.appendChild(cell);
+            }
+        }
+
+        // Mendapatkan nomor shio berdasarkan angka
+        function getShioNumber(num) {
+            for (let shio = 1; shio <= 12; shio++) {
+                if (shioData[shio].includes(num)) {
+                    return shio;
+                }
+            }
+            return 1; // default
+        }
+
+        // Handle pasaran selection
+        document.getElementById('pasaranSelect').addEventListener('change', function() {
+            const selectedPasaran = this.value;
+            const pasaranInfo = document.getElementById('pasaranInfo');
+            const pasaranDetails = document.getElementById('pasaranDetails');
+            
+            if (selectedPasaran !== 'all' && pasaranData[selectedPasaran]) {
+                const data = pasaranData[selectedPasaran];
+                
+                // Generate predictions based on last result
+                const predictions = generatePredictions(data.resultTerakhir);
+                
+                // Get next day date
+                const nextDay = new Date();
+                nextDay.setDate(nextDay.getDate() + 1);
+                const nextDayStr = nextDay.toISOString().split('T')[0];
+                
+                pasaranInfo.classList.remove('hidden');
+                pasaranDetails.innerHTML = `
+                    <div class="grid grid-cols-1 md:grid-cols-2 gap-3 text-xs">
+                        <div>
+                            <strong>📅 Jadwal:</strong> ${data.jadwal}<br>
+                            <strong>🌍 Zona Waktu:</strong> ${data.zona}
+                        </div>
+                        <div>
+                            <strong>🎯 Angka Main Harian:</strong> <span class="font-mono bg-green-100 px-1 rounded">${predictions.angkaMainHarian}</span><br>
+                            <strong>📊 Angka Main Mingguan:</strong> <span class="font-mono bg-blue-100 px-1 rounded">${predictions.angkaMainMingguan}</span>
+                        </div>
+                    </div>
+                    <div class="mt-3 p-2 bg-gradient-to-r from-red-50 to-orange-50 rounded border border-red-200">
+                        <div class="text-center">
+                            <div class="text-sm font-bold text-red-700 mb-1">🏆 RESULT TERAKHIR</div>
+                            <div class="grid grid-cols-2 md:grid-cols-4 gap-2 text-xs">
+                                <div class="bg-white p-2 rounded shadow-sm">
+                                    <div class="font-semibold text-gray-600">4D</div>
+                                    <div class="text-lg font-bold text-red-600">${data.resultTerakhir.result4D}</div>
+                                </div>
+                                <div class="bg-white p-2 rounded shadow-sm">
+                                    <div class="font-semibold text-gray-600">3D</div>
+                                    <div class="text-lg font-bold text-orange-600">${data.resultTerakhir.result3D}</div>
+                                </div>
+                                <div class="bg-white p-2 rounded shadow-sm">
+                                    <div class="font-semibold text-gray-600">2D</div>
+                                    <div class="text-lg font-bold text-green-600">${data.resultTerakhir.result2D}</div>
+                                </div>
+                                <div class="bg-white p-2 rounded shadow-sm">
+                                    <div class="font-semibold text-gray-600">Tanggal</div>
+                                    <div class="text-sm font-bold text-blue-600">${data.resultTerakhir.tanggal}</div>
+                                </div>
+                            </div>
+                            <div class="mt-2 text-xs text-gray-500">
+                                Periode: ${data.resultTerakhir.periode}
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <div class="mt-3 p-2 bg-gradient-to-r from-green-50 to-blue-50 rounded border border-green-200">
+                        <div class="text-center">
+                            <div class="text-sm font-bold text-green-700 mb-1">🔮 PREDIKSI HARI BERIKUTNYA (${nextDayStr})</div>
+                            <div class="grid grid-cols-2 md:grid-cols-3 gap-2 text-xs mb-2">
+                                <div class="bg-white p-2 rounded shadow-sm">
+                                    <div class="font-semibold text-gray-600">Prediksi 2D</div>
+                                    <div class="text-xs text-blue-600 flex flex-wrap gap-1">
+                                        ${predictions.prediksi2D.slice(0, 6).map(num => `<span class="bg-blue-100 px-1 rounded">${num}</span>`).join('')}
+                                    </div>
+                                </div>
+                                <div class="bg-white p-2 rounded shadow-sm">
+                                    <div class="font-semibold text-gray-600">Prediksi Shio</div>
+                                    <div class="text-xs text-purple-600 flex flex-wrap gap-1">
+                                        ${predictions.prediksiShio.map(shio => `<span class="bg-purple-100 px-1 rounded">${shio}</span>`).join('')}
+                                    </div>
+                                </div>
+                                <div class="bg-white p-2 rounded shadow-sm">
+                                    <div class="font-semibold text-gray-600">Prediksi Ekor</div>
+                                    <div class="text-xs text-orange-600 flex flex-wrap gap-1">
+                                        ${[...new Set(predictions.prediksiEkor)].map(ekor => `<span class="bg-orange-100 px-1 rounded">${ekor}</span>`).join('')}
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="text-xs text-gray-500">
+                                ⚡ Prediksi berdasarkan analisis result terakhir menggunakan pola matematis
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <div class="grid grid-cols-1 md:grid-cols-2 gap-2 mt-2 text-xs">
+                        <div>
+                            <strong>🎲 BBFS:</strong> <span class="font-mono bg-purple-100 px-1 rounded">${predictions.bbfs}</span>
+                        </div>
+                        <div>
+                            <strong>🌟 Biji ON Harian:</strong> <span class="font-mono bg-indigo-100 px-1 rounded">${predictions.bijiOnHarian}</span>
+                        </div>
+                        <div>
+                            <strong>⭐ Biji ON Mingguan:</strong> <span class="font-mono bg-violet-100 px-1 rounded">${predictions.bijiOnMingguan}</span>
+                        </div>
+                        <div>
+                            <strong>🎯 Ekor Harian:</strong> <span class="font-mono bg-orange-100 px-1 rounded">${predictions.ekorMainHarian}</span>
+                        </div>
+                        <div>
+                            <strong>🎯 Ekor Mingguan:</strong> <span class="font-mono bg-red-100 px-1 rounded">${predictions.ekorMainMingguan}</span>
+                        </div>
+                        <div>
+                            <strong>👑 Kepala Harian:</strong> <span class="font-mono bg-yellow-100 px-1 rounded">${predictions.kepalaMainHarian}</span>
+                        </div>
+                        <div>
+                            <strong>👑 Kepala Mingguan:</strong> <span class="font-mono bg-amber-100 px-1 rounded">${predictions.kepalaMainMingguan}</span>
+                        </div>
+                        <div>
+                            <strong>🎪 As Harian:</strong> <span class="font-mono bg-pink-100 px-1 rounded">${predictions.asMainHarian}</span>
+                        </div>
+                        <div>
+                            <strong>🎪 As Mingguan:</strong> <span class="font-mono bg-rose-100 px-1 rounded">${predictions.asMainMingguan}</span>
+                        </div>
+                        <div>
+                            <strong>🎭 Kop Harian:</strong> <span class="font-mono bg-cyan-100 px-1 rounded">${predictions.kopMainHarian}</span>
+                        </div>
+                        <div>
+                            <strong>🎭 Kop Mingguan:</strong> <span class="font-mono bg-teal-100 px-1 rounded">${predictions.kopMainMingguan}</span>
+                        </div>
+                    </div>
+                    <div class="mt-3 space-y-2">
+                        <div class="flex flex-wrap gap-1">
+                            <button onclick="useAngkaMain('${predictions.angkaMainHarian}', 'harian')" class="px-2 py-1 bg-green-500 hover:bg-green-600 text-white text-xs rounded transition-colors">
+                                📅 Angka Harian
+                            </button>
+                            <button onclick="useAngkaMain('${predictions.angkaMainMingguan}', 'mingguan')" class="px-2 py-1 bg-blue-500 hover:bg-blue-600 text-white text-xs rounded transition-colors">
+                                📊 Angka Mingguan
+                            </button>
+                            <button onclick="useBBFS('${predictions.bbfs}')" class="px-2 py-1 bg-purple-500 hover:bg-purple-600 text-white text-xs rounded transition-colors">
+                                🎲 BBFS
+                            </button>
+                        </div>
+                        <div class="flex flex-wrap gap-1">
+                            <button onclick="useBijiOn('${predictions.bijiOnHarian}', 'harian')" class="px-2 py-1 bg-indigo-500 hover:bg-indigo-600 text-white text-xs rounded transition-colors">
+                                🌟 Biji ON Harian
+                            </button>
+                            <button onclick="useBijiOn('${predictions.bijiOnMingguan}', 'mingguan')" class="px-2 py-1 bg-violet-500 hover:bg-violet-600 text-white text-xs rounded transition-colors">
+                                ⭐ Biji ON Mingguan
+                            </button>
+                        </div>
+                        <div class="flex flex-wrap gap-1">
+                            <button onclick="useEkorMain('${predictions.ekorMainHarian}', 'harian')" class="px-2 py-1 bg-orange-500 hover:bg-orange-600 text-white text-xs rounded transition-colors">
+                                🎯 Ekor Harian
+                            </button>
+                            <button onclick="useEkorMain('${predictions.ekorMainMingguan}', 'mingguan')" class="px-2 py-1 bg-red-500 hover:bg-red-600 text-white text-xs rounded transition-colors">
+                                🎯 Ekor Mingguan
+                            </button>
+                        </div>
+                        <div class="flex flex-wrap gap-1">
+                            <button onclick="useKepalaMain('${predictions.kepalaMainHarian}', 'harian')" class="px-2 py-1 bg-yellow-500 hover:bg-yellow-600 text-white text-xs rounded transition-colors">
+                                👑 Kepala Harian
+                            </button>
+                            <button onclick="useKepalaMain('${predictions.kepalaMainMingguan}', 'mingguan')" class="px-2 py-1 bg-amber-500 hover:bg-amber-600 text-white text-xs rounded transition-colors">
+                                👑 Kepala Mingguan
+                            </button>
+                        </div>
+                        <div class="flex flex-wrap gap-1">
+                            <button onclick="useAsMain('${predictions.asMainHarian}', 'harian')" class="px-2 py-1 bg-pink-500 hover:bg-pink-600 text-white text-xs rounded transition-colors">
+                                🎪 As Harian
+                            </button>
+                            <button onclick="useAsMain('${predictions.asMainMingguan}', 'mingguan')" class="px-2 py-1 bg-rose-500 hover:bg-rose-600 text-white text-xs rounded transition-colors">
+                                🎪 As Mingguan
+                            </button>
+                        </div>
+                        <div class="flex flex-wrap gap-1">
+                            <button onclick="useKopMain('${predictions.kopMainHarian}', 'harian')" class="px-2 py-1 bg-cyan-500 hover:bg-cyan-600 text-white text-xs rounded transition-colors">
+                                🎭 Kop Harian
+                            </button>
+                            <button onclick="useKopMain('${predictions.kopMainMingguan}', 'mingguan')" class="px-2 py-1 bg-teal-500 hover:bg-teal-600 text-white text-xs rounded transition-colors">
+                                🎭 Kop Mingguan
+                            </button>
+                        </div>
+                        <div class="flex flex-wrap gap-1 mt-2 pt-2 border-t">
+                            <button onclick="usePrediksi2D('${predictions.prediksi2D.join(',')}')" class="px-2 py-1 bg-gradient-to-r from-blue-500 to-purple-500 hover:from-blue-600 hover:to-purple-600 text-white text-xs rounded transition-colors">
+                                🔮 Prediksi 2D
+                            </button>
+                            <button onclick="usePrediksiShio('${predictions.prediksiShio.join(',')}')" class="px-2 py-1 bg-gradient-to-r from-purple-500 to-pink-500 hover:from-purple-600 hover:to-pink-600 text-white text-xs rounded transition-colors">
+                                🐉 Prediksi Shio
+                            </button>
+                            <button onclick="usePrediksiEkor('${[...new Set(predictions.prediksiEkor)].join(',')}')" class="px-2 py-1 bg-gradient-to-r from-orange-500 to-red-500 hover:from-orange-600 hover:to-red-600 text-white text-xs rounded transition-colors">
+                                🎯 Prediksi Ekor
+                            </button>
+                        </div>
+                    </div>
+                `;
+            } else {
+                pasaranInfo.classList.add('hidden');
+            }
+        });
+
+        // Function to use angka main from pasaran
+        function useAngkaMain(angkaMain, type) {
+            document.getElementById('angkaMain').value = angkaMain;
+            
+            // Show notification
+            const notification = document.createElement('div');
+            notification.className = 'fixed top-4 right-4 bg-green-500 text-white px-4 py-2 rounded-lg shadow-lg z-50 transition-all duration-300';
+            notification.innerHTML = `✅ Angka Main ${type} (${angkaMain}) telah digunakan!`;
+            document.body.appendChild(notification);
+            
+            setTimeout(() => {
+                notification.style.opacity = '0';
+                setTimeout(() => {
+                    document.body.removeChild(notification);
+                }, 300);
+            }, 2000);
+        }
+
+        // Function to use BBFS from pasaran
+        function useBBFS(bbfs) {
+            document.getElementById('angkaMain').value = bbfs;
+            
+            // Show notification
+            const notification = document.createElement('div');
+            notification.className = 'fixed top-4 right-4 bg-purple-500 text-white px-4 py-2 rounded-lg shadow-lg z-50 transition-all duration-300';
+            notification.innerHTML = `🎲 BBFS (${bbfs}) telah digunakan sebagai Angka Main!`;
+            document.body.appendChild(notification);
+            
+            setTimeout(() => {
+                notification.style.opacity = '0';
+                setTimeout(() => {
+                    document.body.removeChild(notification);
+                }, 300);
+            }, 2000);
+        }
+
+        // Function to use Biji ON from pasaran
+        function useBijiOn(bijiOn, type) {
+            document.getElementById('angkaMain').value = bijiOn.replace(/,/g, '');
+            
+            // Show notification
+            const notification = document.createElement('div');
+            notification.className = 'fixed top-4 right-4 bg-indigo-500 text-white px-4 py-2 rounded-lg shadow-lg z-50 transition-all duration-300';
+            notification.innerHTML = `🌟 Biji ON ${type} (${bijiOn}) telah digunakan sebagai Angka Main!`;
+            document.body.appendChild(notification);
+            
+            setTimeout(() => {
+                notification.style.opacity = '0';
+                setTimeout(() => {
+                    document.body.removeChild(notification);
+                }, 300);
+            }, 2000);
+        }
+
+        // Function to use Ekor Main from pasaran
+        function useEkorMain(ekorMain, type) {
+            // Clear previous ekor selections
+            selectedEkor = [];
+            document.querySelectorAll('.ekor-btn').forEach(btn => {
+                btn.classList.remove('bg-blue-500', 'text-white');
+                btn.classList.add('border-gray-300');
+            });
+            
+            // Select new ekor based on ekorMain
+            const ekorArray = ekorMain.split(',').map(e => e.trim());
+            ekorArray.forEach(ekor => {
+                const btn = document.querySelector(`[data-ekor="${ekor}"]`);
+                if (btn) {
+                    btn.classList.add('bg-blue-500', 'text-white');
+                    btn.classList.remove('border-gray-300');
+                    selectedEkor.push(ekor);
+                }
+            });
+            
+            // Show notification
+            const notification = document.createElement('div');
+            notification.className = 'fixed top-4 right-4 bg-orange-500 text-white px-4 py-2 rounded-lg shadow-lg z-50 transition-all duration-300';
+            notification.innerHTML = `🎯 Ekor ${type} (${ekorMain}) telah dipilih!`;
+            document.body.appendChild(notification);
+            
+            setTimeout(() => {
+                notification.style.opacity = '0';
+                setTimeout(() => {
+                    document.body.removeChild(notification);
+                }, 300);
+            }, 2000);
+        }
+
+        // Function to use Kepala Main from pasaran (filter by first digit)
+        function useKepalaMain(kepalaMain, type) {
+            // This will be used in the filter logic to filter numbers by their first digit
+            // For now, we'll store it and show notification
+            window.selectedKepalaMain = kepalaMain.split(',').map(k => k.trim());
+            
+            // Show notification
+            const notification = document.createElement('div');
+            notification.className = 'fixed top-4 right-4 bg-yellow-500 text-white px-4 py-2 rounded-lg shadow-lg z-50 transition-all duration-300';
+            notification.innerHTML = `👑 Kepala ${type} (${kepalaMain}) akan digunakan saat filter diterapkan!`;
+            document.body.appendChild(notification);
+            
+            setTimeout(() => {
+                notification.style.opacity = '0';
+                setTimeout(() => {
+                    document.body.removeChild(notification);
+                }, 300);
+            }, 2000);
+        }
+
+        // Function to use As Main from pasaran (filter by thousands digit in 4D)
+        function useAsMain(asMain, type) {
+            // Store As Main for 4D filtering
+            window.selectedAsMain = asMain.split(',').map(a => a.trim());
+            
+            // Show notification
+            const notification = document.createElement('div');
+            notification.className = 'fixed top-4 right-4 bg-pink-500 text-white px-4 py-2 rounded-lg shadow-lg z-50 transition-all duration-300';
+            notification.innerHTML = `🎪 As ${type} (${asMain}) akan digunakan untuk filter 4D!`;
+            document.body.appendChild(notification);
+            
+            setTimeout(() => {
+                notification.style.opacity = '0';
+                setTimeout(() => {
+                    document.body.removeChild(notification);
+                }, 300);
+            }, 2000);
+        }
+
+        // Function to use Kop Main from pasaran (filter by hundreds digit in 4D)
+        function useKopMain(kopMain, type) {
+            // Store Kop Main for 4D filtering
+            window.selectedKopMain = kopMain.split(',').map(k => k.trim());
+            
+            // Show notification
+            const notification = document.createElement('div');
+            notification.className = 'fixed top-4 right-4 bg-cyan-500 text-white px-4 py-2 rounded-lg shadow-lg z-50 transition-all duration-300';
+            notification.innerHTML = `🎭 Kop ${type} (${kopMain}) akan digunakan untuk filter 4D!`;
+            document.body.appendChild(notification);
+            
+            setTimeout(() => {
+                notification.style.opacity = '0';
+                setTimeout(() => {
+                    document.body.removeChild(notification);
+                }, 300);
+            }, 2000);
+        }
+
+        // Function to use prediction 2D
+        function usePrediksi2D(prediksi2D) {
+            document.getElementById('angka2D').value = prediksi2D.replace(/,/g, ', ');
+            validate2DInput();
+            
+            // Show notification
+            const notification = document.createElement('div');
+            notification.className = 'fixed top-4 right-4 bg-gradient-to-r from-blue-500 to-purple-500 text-white px-4 py-2 rounded-lg shadow-lg z-50 transition-all duration-300';
+            notification.innerHTML = `🔮 Prediksi 2D telah dimasukkan untuk validasi!`;
+            document.body.appendChild(notification);
+            
+            setTimeout(() => {
+                notification.style.opacity = '0';
+                setTimeout(() => {
+                    document.body.removeChild(notification);
+                }, 300);
+            }, 2000);
+        }
+
+        // Function to use prediction shio
+        function usePrediksiShio(prediksiShio) {
+            // Clear previous shio selections
+            selectedShio = [];
+            document.querySelectorAll('.shio-btn').forEach(btn => {
+                btn.classList.remove('bg-green-500', 'text-white');
+                btn.classList.add('border-gray-300');
+            });
+            
+            // Select predicted shio
+            const shioArray = prediksiShio.split(',').map(s => s.trim());
+            shioArray.forEach(shio => {
+                const btn = document.querySelector(`[data-shio="${shio}"]`);
+                if (btn) {
+                    btn.classList.add('bg-green-500', 'text-white');
+                    btn.classList.remove('border-gray-300');
+                    selectedShio.push(shio);
+                }
+            });
+            
+            // Show notification
+            const notification = document.createElement('div');
+            notification.className = 'fixed top-4 right-4 bg-gradient-to-r from-purple-500 to-pink-500 text-white px-4 py-2 rounded-lg shadow-lg z-50 transition-all duration-300';
+            notification.innerHTML = `🐉 Prediksi Shio (${prediksiShio}) telah dipilih!`;
+            document.body.appendChild(notification);
+            
+            setTimeout(() => {
+                notification.style.opacity = '0';
+                setTimeout(() => {
+                    document.body.removeChild(notification);
+                }, 300);
+            }, 2000);
+        }
+
+        // Function to use prediction ekor
+        function usePrediksiEkor(prediksiEkor) {
+            // Clear previous ekor selections
+            selectedEkor = [];
+            document.querySelectorAll('.ekor-btn').forEach(btn => {
+                btn.classList.remove('bg-blue-500', 'text-white');
+                btn.classList.add('border-gray-300');
+            });
+            
+            // Select predicted ekor
+            const ekorArray = prediksiEkor.split(',').map(e => e.trim());
+            ekorArray.forEach(ekor => {
+                const btn = document.querySelector(`[data-ekor="${ekor}"]`);
+                if (btn) {
+                    btn.classList.add('bg-blue-500', 'text-white');
+                    btn.classList.remove('border-gray-300');
+                    selectedEkor.push(ekor);
+                }
+            });
+            
+            // Show notification
+            const notification = document.createElement('div');
+            notification.className = 'fixed top-4 right-4 bg-gradient-to-r from-orange-500 to-red-500 text-white px-4 py-2 rounded-lg shadow-lg z-50 transition-all duration-300';
+            notification.innerHTML = `🎯 Prediksi Ekor (${prediksiEkor}) telah dipilih!`;
+            document.body.appendChild(notification);
+            
+            setTimeout(() => {
+                notification.style.opacity = '0';
+                setTimeout(() => {
+                    document.body.removeChild(notification);
+                }, 300);
+            }, 2000);
+        }
+
+        // Make functions global
+        window.useAngkaMain = useAngkaMain;
+        window.useBBFS = useBBFS;
+        window.useBijiOn = useBijiOn;
+        window.useEkorMain = useEkorMain;
+        window.useKepalaMain = useKepalaMain;
+        window.useAsMain = useAsMain;
+        window.useKopMain = useKopMain;
+        window.usePrediksi2D = usePrediksi2D;
+        window.usePrediksiShio = usePrediksiShio;
+        window.usePrediksiEkor = usePrediksiEkor;
+
+        // Handle filter ekor
+        document.querySelectorAll('.ekor-btn').forEach(btn => {
+            btn.addEventListener('click', function() {
+                const ekor = this.dataset.ekor;
+                
+                if (this.classList.contains('bg-blue-500')) {
+                    // Remove from selection
+                    this.classList.remove('bg-blue-500', 'text-white');
+                    this.classList.add('border-gray-300');
+                    selectedEkor = selectedEkor.filter(e => e !== ekor);
+                } else {
+                    // Add to selection
+                    this.classList.add('bg-blue-500', 'text-white');
+                    this.classList.remove('border-gray-300');
+                    selectedEkor.push(ekor);
+                }
+            });
+        });
+
+        // Clear ekor selection
+        document.getElementById('clearEkor').addEventListener('click', function() {
+            selectedEkor = [];
+            document.querySelectorAll('.ekor-btn').forEach(btn => {
+                btn.classList.remove('bg-blue-500', 'text-white');
+                btn.classList.add('border-gray-300');
+            });
+        });
+
+        // Handle filter shio
+        document.querySelectorAll('.shio-btn').forEach(btn => {
+            btn.addEventListener('click', function() {
+                const shio = this.dataset.shio;
+                
+                if (this.classList.contains('bg-green-500')) {
+                    // Remove from selection
+                    this.classList.remove('bg-green-500', 'text-white');
+                    this.classList.add('border-gray-300');
+                    selectedShio = selectedShio.filter(s => s !== shio);
+                } else {
+                    // Add to selection
+                    this.classList.add('bg-green-500', 'text-white');
+                    this.classList.remove('border-gray-300');
+                    selectedShio.push(shio);
+                }
+            });
+        });
+
+        // Clear shio selection
+        document.getElementById('clearShio').addEventListener('click', function() {
+            selectedShio = [];
+            document.querySelectorAll('.shio-btn').forEach(btn => {
+                btn.classList.remove('bg-green-500', 'text-white');
+                btn.classList.add('border-gray-300');
+            });
+        });
+
+        // Handle filter jumlah
+        document.querySelectorAll('.jumlah-btn').forEach(btn => {
+            btn.addEventListener('click', function() {
+                const jumlah = this.dataset.jumlah;
+                
+                if (this.classList.contains('bg-indigo-500')) {
+                    // Remove from selection
+                    this.classList.remove('bg-indigo-500', 'text-white');
+                    this.classList.add('border-gray-300');
+                    selectedJumlah = selectedJumlah.filter(j => j !== jumlah);
+                } else {
+                    // Add to selection
+                    this.classList.add('bg-indigo-500', 'text-white');
+                    this.classList.remove('border-gray-300');
+                    selectedJumlah.push(jumlah);
+                }
+                
+                updateJumlahInfo();
+            });
+        });
+
+        // Clear jumlah selection
+        document.getElementById('clearJumlah').addEventListener('click', function() {
+            selectedJumlah = [];
+            document.querySelectorAll('.jumlah-btn').forEach(btn => {
+                btn.classList.remove('bg-indigo-500', 'text-white');
+                btn.classList.add('border-gray-300');
+            });
+            document.getElementById('jumlahInfo').classList.add('hidden');
+        });
+
+        // Update jumlah info display
+        function updateJumlahInfo() {
+            const jumlahInfo = document.getElementById('jumlahInfo');
+            const jumlahExamples = document.getElementById('jumlahExamples');
+            
+            if (selectedJumlah.length === 0) {
+                jumlahInfo.classList.add('hidden');
+                return;
+            }
+            
+            jumlahInfo.classList.remove('hidden');
+            
+            let examples = [];
+            selectedJumlah.forEach(sum => {
+                const sumInt = parseInt(sum);
+                const exampleNumbers = [];
+                
+                // Generate example numbers for this sum
+                for (let i = 0; i <= 99; i++) {
+                    const numberStr = i.toString().padStart(2, '0');
+                    const digit1 = parseInt(numberStr[0]);
+                    const digit2 = parseInt(numberStr[1]);
+                    const digitSum = digit1 + digit2;
+                    
+                    if (digitSum === sumInt && exampleNumbers.length < 5) {
+                        exampleNumbers.push(numberStr);
+                    }
+                }
+                
+                if (exampleNumbers.length > 0) {
+                    examples.push(`<strong>Jumlah ${sum}:</strong> ${exampleNumbers.join(', ')}${exampleNumbers.length >= 5 ? '...' : ''}`);
+                }
+            });
+            
+            jumlahExamples.innerHTML = examples.join('<br>');
+        }
+
+        // Function to calculate digit sum
+        function calculateDigitSum(number) {
+            const numberStr = number.toString().padStart(2, '0');
+            const digit1 = parseInt(numberStr[0]);
+            const digit2 = parseInt(numberStr[1]);
+            return digit1 + digit2;
+        }
+
+        // Validasi input angka main
+        document.getElementById('angkaMain').addEventListener('input', function() {
+            this.value = this.value.replace(/\D/g, '');
+        });
+
+        // Validasi input kolom validasi
+        for (let i = 1; i <= 6; i++) {
+            document.getElementById(`valid${i}`).addEventListener('input', function() {
+                this.value = this.value.replace(/\D/g, '');
+            });
+        }
+
+        // Terapkan filter
+        document.getElementById('applyFilter').addEventListener('click', function() {
+            applyFilters();
+        });
+
+        function applyFilters() {
+            const pasaran = document.getElementById('pasaranSelect').value;
+            const angkaMain = document.getElementById('angkaMain').value;
+            const validAngka = [];
+            
+            // Kumpulkan angka validasi
+            for (let i = 1; i <= 6; i++) {
+                const val = document.getElementById(`valid${i}`).value;
+                if (val) validAngka.push(val);
+            }
+
+            currentFilter = {
+                pasaran,
+                ekor: [...selectedEkor],
+                shio: [...selectedShio],
+                jumlah: [...selectedJumlah],
+                angkaMain,
+                validAngka
+            };
+
+            filterTable();
+            updateStatistics();
+            updatePasaranStatistics();
+        }
+
+        // Update statistics based on selected pasaran
+        function updatePasaranStatistics() {
+            const pasaran = currentFilter.pasaran;
+            
+            if (pasaran !== 'all' && pasaranData[pasaran]) {
+                const data = pasaranData[pasaran];
+                
+                // Update shio frequency display if needed
+                // This could be used to show which shio are more frequent in selected market
+                console.log(`Pasaran ${data.name} - Shio terpanas:`, 
+                    Object.entries(data.shioFreq)
+                        .sort(([,a], [,b]) => b - a)
+                        .slice(0, 3)
+                        .map(([shio, freq]) => `Shio ${shio} (${freq}x)`)
+                );
+            }
+        }
+
+        function filterTable() {
+            const cells = document.querySelectorAll('.shio-cell');
+            let filteredCount = 0;
+            
+            // Reset crossed numbers data
+            crossedNumbersData = {
+                angkaMain: [],
+                valid1: [],
+                valid2: [],
+                valid3: [],
+                valid4: [],
+                valid5: [],
+                valid6: []
+            };
+
+            // Reset remaining numbers data
+            remainingNumbersData = {
+                initial: [],
+                afterAngkaMain: [],
+                afterValid1: [],
+                afterValid2: [],
+                afterValid3: [],
+                afterValid4: [],
+                afterValid5: [],
+                afterValid6: []
+            };
+
+            // Initialize with all numbers
+            for (let i = 0; i <= 99; i++) {
+                remainingNumbersData.initial.push(i.toString().padStart(2, '0'));
+            }
+
+            // Track remaining numbers after each filter stage
+            let currentRemaining = [...remainingNumbersData.initial];
+
+            // Apply filters step by step and track remaining numbers
+            
+            // Step 1: Filter by Ekor, Shio, Jumlah, and Kepala Main (basic filters)
+            currentRemaining = currentRemaining.filter(numberStr => {
+                const number = parseInt(numberStr);
+                
+                // Filter ekor
+                if (currentFilter.ekor.length > 0) {
+                    const ekor = number % 10;
+                    if (!currentFilter.ekor.includes(ekor.toString())) {
+                        return false;
+                    }
+                }
+                
+                // Filter shio
+                if (currentFilter.shio.length > 0) {
+                    const shioNum = getShioNumber(number);
+                    if (!currentFilter.shio.includes(shioNum.toString())) {
+                        return false;
+                    }
+                }
+                
+                // Filter jumlah
+                if (currentFilter.jumlah.length > 0) {
+                    const digitSum = calculateDigitSum(number);
+                    if (!currentFilter.jumlah.includes(digitSum.toString())) {
+                        return false;
+                    }
+                }
+                
+                // Filter kepala main (first digit)
+                if (window.selectedKepalaMain && window.selectedKepalaMain.length > 0) {
+                    const kepala = Math.floor(number / 10).toString();
+                    if (!window.selectedKepalaMain.includes(kepala)) {
+                        return false;
+                    }
+                }
+                
+                return true;
+            });
+
+            // Step 2: Filter by Angka Main
+            if (currentFilter.angkaMain) {
+                const beforeAngkaMain = [...currentRemaining];
+                currentRemaining = currentRemaining.filter(numberStr => {
+                    const mainDigits = currentFilter.angkaMain.split('');
+                    const numberDigits = numberStr.split('');
+                    
+                    for (let digit of mainDigits) {
+                        if (numberDigits.includes(digit)) {
+                            return true;
+                        }
+                    }
+                    return false;
+                });
+                
+                // Track crossed numbers
+                crossedNumbersData.angkaMain = beforeAngkaMain.filter(num => !currentRemaining.includes(num));
+                remainingNumbersData.afterAngkaMain = [...currentRemaining];
+            } else {
+                remainingNumbersData.afterAngkaMain = [...currentRemaining];
+            }
+
+            // Step 3-8: Filter by Valid 1-6 (bertahap)
+            for (let i = 0; i < currentFilter.validAngka.length; i++) {
+                const validNum = currentFilter.validAngka[i];
+                if (validNum) {
+                    const beforeValid = [...currentRemaining];
+                    currentRemaining = currentRemaining.filter(numberStr => {
+                        const validDigits = validNum.split('');
+                        const numberDigits = numberStr.split('');
+                        
+                        for (let digit of validDigits) {
+                            if (numberDigits.includes(digit)) {
+                                return true;
+                            }
+                        }
+                        return false;
+                    });
+                    
+                    // Track crossed and remaining numbers
+                    const validKey = `valid${i + 1}`;
+                    crossedNumbersData[validKey] = beforeValid.filter(num => !currentRemaining.includes(num));
+                    remainingNumbersData[`after${validKey.charAt(0).toUpperCase() + validKey.slice(1)}`] = [...currentRemaining];
+                }
+            }
+
+            // Apply visual styling to cells
+            cells.forEach(cell => {
+                const number = parseInt(cell.dataset.number);
+                const numberStr = number.toString().padStart(2, '0');
+
+                // Reset special 2D highlighting
+                cell.classList.remove('border-4', 'border-purple-500');
+
+                if (currentRemaining.includes(numberStr)) {
+                    cell.classList.remove('filtered-out');
+                    cell.classList.add('highlight');
+                    filteredCount++;
+                    
+                    // Add special highlight for 2D matches
+                    if (input2DNumbers.includes(numberStr)) {
+                        cell.classList.add('border-4', 'border-purple-500');
+                    }
+                } else {
+                    cell.classList.add('filtered-out');
+                    cell.classList.remove('highlight');
+                }
+            });
+
+            updateCrossedNumbersDisplay();
+            updateRemainingNumbersDisplay();
+            updateBBFSTable();
+            return filteredCount;
+        }
+
+        function updateStatistics() {
+            const total = 100;
+            const filtered = document.querySelectorAll('.shio-cell.highlight').length;
+            const percentage = ((filtered / total) * 100).toFixed(1);
+            const match2D = countMatched2D();
+
+            document.getElementById('totalAngka').textContent = total;
+            document.getElementById('filteredAngka').textContent = filtered;
+            document.getElementById('persentase').textContent = `${percentage}%`;
+            document.getElementById('match2D').textContent = match2D;
+        }
+
+        // Fungsi untuk menghitung match 2D
+        function countMatched2D() {
+            if (input2DNumbers.length === 0) return 0;
+            
+            const highlightedCells = document.querySelectorAll('.shio-cell.highlight');
+            let matchCount = 0;
+            
+            highlightedCells.forEach(cell => {
+                const number = parseInt(cell.dataset.number);
+                const numberStr = number.toString().padStart(2, '0');
+                
+                if (input2DNumbers.includes(numberStr)) {
+                    matchCount++;
+                }
+            });
+            
+            return matchCount;
+        }
+
+        // Handle tab switching untuk 2D
+        function initTabs() {
+            const tabButtons = document.querySelectorAll('.tab-btn');
+            const tabContents = document.querySelectorAll('.tab-content');
+
+            tabButtons.forEach(button => {
+                button.addEventListener('click', function() {
+                    // Remove active class from all buttons
+                    tabButtons.forEach(btn => {
+                        btn.classList.remove('active', 'bg-blue-500', 'text-white');
+                        btn.classList.add('bg-gray-200', 'text-gray-700');
+                    });
+
+                    // Add active class to clicked button
+                    this.classList.add('active', 'bg-blue-500', 'text-white');
+                    this.classList.remove('bg-gray-200', 'text-gray-700');
+
+                    // Hide all tab contents
+                    tabContents.forEach(content => {
+                        content.classList.add('hidden');
+                    });
+
+                    // Show corresponding content
+                    const targetId = this.id.replace('tab', 'content');
+                    document.getElementById(targetId).classList.remove('hidden');
+                });
+            });
+        }
+
+        // Validasi input 2D
+        function validate2DInput() {
+            const input = document.getElementById('angka2D').value;
+            const validationResult = document.getElementById('validationResult');
+            const matchedNumbers = document.getElementById('matchedNumbers');
+
+            if (!input.trim()) {
+                validationResult.classList.add('hidden');
+                input2DNumbers = [];
+                currentFilter.input2D = [];
+                updateStatistics();
+                return;
+            }
+
+            // Parse input - support comma and space separation
+            const numbers = input.replace(/[^\d\s,]/g, '') // Remove non-digit, non-space, non-comma
+                                .split(/[\s,]+/) // Split by space or comma
+                                .filter(num => num.length === 2) // Only 2-digit numbers
+                                .map(num => num.padStart(2, '0')); // Ensure 2 digits
+
+            input2DNumbers = [...new Set(numbers)]; // Remove duplicates
+            currentFilter.input2D = [...input2DNumbers];
+
+            // Find matches with current filtered results
+            const highlightedCells = document.querySelectorAll('.shio-cell.highlight');
+            const matches = [];
+
+            highlightedCells.forEach(cell => {
+                const number = parseInt(cell.dataset.number);
+                const numberStr = number.toString().padStart(2, '0');
+                
+                if (input2DNumbers.includes(numberStr)) {
+                    matches.push(numberStr);
+                    // Add special highlight for matched 2D numbers
+                    cell.classList.add('border-4', 'border-purple-500');
+                }
+            });
+
+            // Show validation result
+            if (matches.length > 0) {
+                validationResult.classList.remove('hidden');
+                matchedNumbers.innerHTML = `
+                    <strong>Angka yang cocok (${matches.length}):</strong><br>
+                    ${matches.map(num => `<span class="inline-block bg-purple-100 text-purple-800 px-2 py-1 rounded text-xs font-semibold mr-1 mb-1">${num}</span>`).join('')}
+                    <br><br>
+                    <strong>Total input:</strong> ${input2DNumbers.length} angka<br>
+                    <strong>Tingkat kecocokan:</strong> ${((matches.length / input2DNumbers.length) * 100).toFixed(1)}%
+                `;
+            } else {
+                validationResult.classList.remove('hidden');
+                matchedNumbers.innerHTML = `
+                    <div class="text-orange-700">
+                        <strong>Tidak ada angka yang cocok</strong><br>
+                        Total input: ${input2DNumbers.length} angka<br>
+                        Coba sesuaikan filter atau masukkan angka lain.
+                    </div>
+                `;
+            }
+
+            updateStatistics();
+        }
+
+        // Reset semua filter
+        function resetFilters() {
+            selectedEkor = [];
+            selectedShio = [];
+            selectedJumlah = [];
+            
+            document.querySelectorAll('.ekor-btn').forEach(btn => {
+                btn.classList.remove('bg-blue-500', 'text-white');
+                btn.classList.add('border-gray-300');
+            });
+            
+            document.querySelectorAll('.shio-btn').forEach(btn => {
+                btn.classList.remove('bg-green-500', 'text-white');
+                btn.classList.add('border-gray-300');
+            });
+            
+            document.querySelectorAll('.jumlah-btn').forEach(btn => {
+                btn.classList.remove('bg-indigo-500', 'text-white');
+                btn.classList.add('border-gray-300');
+            });
+            
+            document.getElementById('jumlahInfo').classList.add('hidden');
+            document.getElementById('angkaMain').value = '';
+            for (let i = 1; i <= 6; i++) {
+                document.getElementById(`valid${i}`).value = '';
+            }
+            
+            document.querySelectorAll('.shio-cell').forEach(cell => {
+                cell.classList.remove('filtered-out', 'highlight');
+            });
+            
+            updateStatistics();
+        }
+
+        // Event listener untuk validasi 2D
+        document.getElementById('validate2D').addEventListener('click', validate2DInput);
+        
+        // Auto-validate saat mengetik (dengan debounce)
+        let debounceTimer;
+        document.getElementById('angka2D').addEventListener('input', function() {
+            clearTimeout(debounceTimer);
+            debounceTimer = setTimeout(validate2DInput, 500);
+        });
+
+        // Fungsi untuk menampilkan angka yang terpangkas
+        function updateCrossedNumbersDisplay() {
+            const crossedContainer = document.getElementById('crossedNumbers');
+            let html = '';
+
+            // Check if any filters are applied
+            const hasFilters = currentFilter.angkaMain || currentFilter.validAngka.length > 0;
+            
+            if (!hasFilters) {
+                html = '<div class="text-sm text-gray-500 text-center py-4">Belum ada filter yang diterapkan</div>';
+            } else {
+                // Angka Main
+                if (crossedNumbersData.angkaMain.length > 0) {
+                    html += `
+                        <div class="mb-4">
+                            <h4 class="font-semibold text-red-700 mb-2">🎯 Terpangkas oleh Angka Main (${currentFilter.angkaMain}):</h4>
+                            <div class="flex flex-wrap gap-1">
+                                ${crossedNumbersData.angkaMain.map(num => 
+                                    `<span class="inline-block bg-red-100 text-red-800 px-2 py-1 rounded text-xs font-semibold">${num}</span>`
+                                ).join('')}
+                            </div>
+                            <div class="text-xs text-red-600 mt-1">Total: ${crossedNumbersData.angkaMain.length} angka</div>
+                        </div>
+                    `;
+                }
+
+                // Valid 1-6
+                for (let i = 1; i <= 6; i++) {
+                    const validKey = `valid${i}`;
+                    const validValue = document.getElementById(validKey).value;
+                    
+                    if (crossedNumbersData[validKey].length > 0 && validValue) {
+                        const colors = {
+                            valid1: { bg: 'bg-orange-100', text: 'text-orange-800', textLight: 'text-orange-600' },
+                            valid2: { bg: 'bg-yellow-100', text: 'text-yellow-800', textLight: 'text-yellow-600' },
+                            valid3: { bg: 'bg-green-100', text: 'text-green-800', textLight: 'text-green-600' },
+                            valid4: { bg: 'bg-blue-100', text: 'text-blue-800', textLight: 'text-blue-600' },
+                            valid5: { bg: 'bg-purple-100', text: 'text-purple-800', textLight: 'text-purple-600' },
+                            valid6: { bg: 'bg-pink-100', text: 'text-pink-800', textLight: 'text-pink-600' }
+                        };
+                        
+                        const color = colors[validKey];
+                        
+                        html += `
+                            <div class="mb-4">
+                                <h4 class="font-semibold ${color.textLight} mb-2">✅ Terpangkas oleh Valid ${i} (${validValue}):</h4>
+                                <div class="flex flex-wrap gap-1">
+                                    ${crossedNumbersData[validKey].map(num => 
+                                        `<span class="inline-block ${color.bg} ${color.text} px-2 py-1 rounded text-xs font-semibold">${num}</span>`
+                                    ).join('')}
+                                </div>
+                                <div class="text-xs ${color.textLight} mt-1">Total: ${crossedNumbersData[validKey].length} angka</div>
+                            </div>
+                        `;
+                    }
+                }
+
+                // Summary
+                const totalCrossed = Object.values(crossedNumbersData).reduce((sum, arr) => sum + arr.length, 0);
+                if (totalCrossed > 0) {
+                    html += `
+                        <div class="border-t pt-3 mt-4">
+                            <div class="text-sm font-semibold text-gray-700">
+                                📊 Total Angka Terpangkas: <span class="text-red-600">${totalCrossed}</span>
+                            </div>
+                            <div class="text-xs text-gray-500 mt-1">
+                                Sistem bertahap: Angka Main → Valid 1 → Valid 2 → Valid 3 → Valid 4 → Valid 5 → Valid 6
+                            </div>
+                        </div>
+                    `;
+                }
+            }
+
+            crossedContainer.innerHTML = html;
+        }
+
+        // Fungsi untuk membuat rekap BBFS
+        function updateBBFSTable() {
+            const bbfsContainer = document.getElementById('bbfsTable');
+            let html = '';
+
+            // Check if any filters are applied
+            const hasFilters = currentFilter.angkaMain || currentFilter.validAngka.length > 0;
+            
+            if (!hasFilters) {
+                html = '<div class="text-sm text-gray-500 text-center py-4">Masukkan Angka Main dan Validasi untuk melihat rekap BBFS</div>';
+            } else {
+                html += '<div class="overflow-x-auto">';
+                html += '<table class="w-full border-collapse border border-gray-300 text-sm">';
+                
+                // Header
+                html += `
+                    <thead>
+                        <tr class="bg-gradient-to-r from-blue-500 to-purple-500 text-white">
+                            <th class="border border-gray-300 px-3 py-2 text-left">Filter Stage</th>
+                            <th class="border border-gray-300 px-3 py-2 text-center">BBFS Input</th>
+                            <th class="border border-gray-300 px-3 py-2 text-center">Angka Cross</th>
+                            <th class="border border-gray-300 px-3 py-2 text-center">Jumlah Angka</th>
+                            <th class="border border-gray-300 px-3 py-2 text-center">BBFS 5 Digit Kuat</th>
+                            <th class="border border-gray-300 px-3 py-2 text-center">Kombinasi 2D</th>
+                            <th class="border border-gray-300 px-3 py-2 text-center">Kombinasi 4D</th>
+                            <th class="border border-gray-300 px-3 py-2 text-center">Aksi</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                `;
+
+                // Angka Main
+                if (currentFilter.angkaMain) {
+                    const uniqueDigits = [...new Set(currentFilter.angkaMain.split(''))].sort();
+                    const combinations2D = generateCombinations2D(uniqueDigits);
+                    const combinations4D = generateCombinations4D(uniqueDigits);
+                    const bbfsText = `*${remainingNumbersData.afterAngkaMain.join('*')}*`;
+                    const crossedNumbers = crossedNumbersData.angkaMain;
+                    const bbfs5Digit = generateBBFS5Digit(remainingNumbersData.afterAngkaMain);
+                    
+                    html += `
+                        <tr class="hover:bg-green-50">
+                            <td class="border border-gray-300 px-3 py-2 font-semibold text-green-700">
+                                🎯 Angka Main
+                            </td>
+                            <td class="border border-gray-300 px-3 py-2 text-center font-mono bg-green-50">
+                                <span class="bg-green-200 px-2 py-1 rounded">${currentFilter.angkaMain}</span>
+                            </td>
+                            <td class="border border-gray-300 px-3 py-2 text-center">
+                                <div class="max-h-16 overflow-y-auto">
+                                    <div class="flex flex-wrap gap-1 justify-center">
+                                        ${crossedNumbers.slice(0, 8).map(num => 
+                                            `<span class="bg-red-100 text-red-800 px-1 py-0.5 rounded text-xs">${num}</span>`
+                                        ).join('')}
+                                        ${crossedNumbers.length > 8 ? `<span class="text-xs text-gray-500">+${crossedNumbers.length - 8}</span>` : ''}
+                                    </div>
+                                </div>
+                                <div class="text-xs text-red-600 mt-1">${crossedNumbers.length} cross</div>
+                            </td>
+                            <td class="border border-gray-300 px-3 py-2 text-center font-semibold">
+                                ${remainingNumbersData.afterAngkaMain.length}
+                            </td>
+                            <td class="border border-gray-300 px-3 py-2 text-center">
+                                <div class="space-y-1">
+                                    ${bbfs5Digit.map((bbfs, index) => 
+                                        `<div class="bg-yellow-100 text-yellow-800 px-2 py-1 rounded text-xs font-mono">
+                                            <strong>Set ${index + 1}:</strong> ${bbfs.join('')}
+                                        </div>`
+                                    ).join('')}
+                                </div>
+                                <div class="text-xs text-gray-500 mt-1">${bbfs5Digit.length} set</div>
+                            </td>
+                            <td class="border border-gray-300 px-3 py-2 text-center">
+                                <div class="max-h-20 overflow-y-auto">
+                                    <div class="flex flex-wrap gap-1 justify-center">
+                                        ${combinations2D.slice(0, 10).map(combo => 
+                                            `<span class="bg-purple-100 text-purple-800 px-1 py-0.5 rounded text-xs">${combo}</span>`
+                                        ).join('')}
+                                        ${combinations2D.length > 10 ? `<span class="text-xs text-gray-500">+${combinations2D.length - 10} lagi</span>` : ''}
+                                    </div>
+                                </div>
+                                <div class="text-xs text-gray-500 mt-1">${combinations2D.length} kombinasi</div>
+                            </td>
+                            <td class="border border-gray-300 px-3 py-2 text-center">
+                                <div class="max-h-20 overflow-y-auto">
+                                    <div class="text-xs font-mono bg-blue-50 p-2 rounded mb-2">
+                                        ${combinations4D.formatted}
+                                    </div>
+                                    <div class="text-xs text-gray-500">
+                                        ${combinations4D.count} kombinasi 4D
+                                    </div>
+                                </div>
+                            </td>
+                            <td class="border border-gray-300 px-3 py-2 text-center">
+                                <button onclick="copyToClipboard('${bbfsText}', this)" class="px-2 py-1 bg-green-500 hover:bg-green-600 text-white text-xs rounded transition-colors mb-1">
+                                    📋 Salin
+                                </button>
+                                <br>
+                                <button onclick="copyBBFS5Digit(${JSON.stringify(bbfs5Digit)}, this)" class="px-2 py-1 bg-yellow-500 hover:bg-yellow-600 text-white text-xs rounded transition-colors mb-1">
+                                    🎯 5D
+                                </button>
+                                <br>
+                                <button onclick="copyToClipboard('${combinations4D.raw}', this)" class="px-2 py-1 bg-blue-500 hover:bg-blue-600 text-white text-xs rounded transition-colors">
+                                    🎲 4D
+                                </button>
+                            </td>
+                        </tr>
+                    `;
+                }
+
+                // Valid 1-6
+                for (let i = 1; i <= 6; i++) {
+                    const validKey = `afterValid${i}`;
+                    const validValue = document.getElementById(`valid${i}`).value;
+                    
+                    if (remainingNumbersData[validKey] && remainingNumbersData[validKey].length > 0 && validValue) {
+                        const uniqueDigits = [...new Set(validValue.split(''))].sort();
+                        const combinations2D = generateCombinations2D(uniqueDigits);
+                        const combinations4D = generateCombinations4D(uniqueDigits);
+                        const bbfsText = `*${remainingNumbersData[validKey].join('*')}*`;
+                        
+                        const colors = {
+                            1: { bg: 'bg-orange-50', text: 'text-orange-700', badge: 'bg-orange-200', btn: 'bg-orange-500 hover:bg-orange-600' },
+                            2: { bg: 'bg-yellow-50', text: 'text-yellow-700', badge: 'bg-yellow-200', btn: 'bg-yellow-500 hover:bg-yellow-600' },
+                            3: { bg: 'bg-emerald-50', text: 'text-emerald-700', badge: 'bg-emerald-200', btn: 'bg-emerald-500 hover:bg-emerald-600' },
+                            4: { bg: 'bg-blue-50', text: 'text-blue-700', badge: 'bg-blue-200', btn: 'bg-blue-500 hover:bg-blue-600' },
+                            5: { bg: 'bg-purple-50', text: 'text-purple-700', badge: 'bg-purple-200', btn: 'bg-purple-500 hover:bg-purple-600' },
+                            6: { bg: 'bg-pink-50', text: 'text-pink-700', badge: 'bg-pink-200', btn: 'bg-pink-500 hover:bg-pink-600' }
+                        };
+                        
+                        const color = colors[i];
+                        
+                        const crossedNumbers = crossedNumbersData[`valid${i}`];
+                        const bbfs5Digit = generateBBFS5Digit(remainingNumbersData[validKey]);
+                        
+                        html += `
+                            <tr class="hover:${color.bg}">
+                                <td class="border border-gray-300 px-3 py-2 font-semibold ${color.text}">
+                                    ✅ Valid ${i}
+                                </td>
+                                <td class="border border-gray-300 px-3 py-2 text-center font-mono ${color.bg}">
+                                    <span class="${color.badge} px-2 py-1 rounded">${validValue}</span>
+                                </td>
+                                <td class="border border-gray-300 px-3 py-2 text-center">
+                                    <div class="max-h-16 overflow-y-auto">
+                                        <div class="flex flex-wrap gap-1 justify-center">
+                                            ${crossedNumbers.slice(0, 8).map(num => 
+                                                `<span class="bg-red-100 text-red-800 px-1 py-0.5 rounded text-xs">${num}</span>`
+                                            ).join('')}
+                                            ${crossedNumbers.length > 8 ? `<span class="text-xs text-gray-500">+${crossedNumbers.length - 8}</span>` : ''}
+                                        </div>
+                                    </div>
+                                    <div class="text-xs text-red-600 mt-1">${crossedNumbers.length} cross</div>
+                                </td>
+                                <td class="border border-gray-300 px-3 py-2 text-center font-semibold">
+                                    ${remainingNumbersData[validKey].length}
+                                </td>
+                                <td class="border border-gray-300 px-3 py-2 text-center">
+                                    <div class="space-y-1">
+                                        ${bbfs5Digit.map((bbfs, index) => 
+                                            `<div class="bg-yellow-100 text-yellow-800 px-2 py-1 rounded text-xs font-mono">
+                                                <strong>Set ${index + 1}:</strong> ${bbfs.join('')}
+                                            </div>`
+                                        ).join('')}
+                                    </div>
+                                    <div class="text-xs text-gray-500 mt-1">${bbfs5Digit.length} set</div>
+                                </td>
+                                <td class="border border-gray-300 px-3 py-2 text-center">
+                                    <div class="max-h-20 overflow-y-auto">
+                                        <div class="flex flex-wrap gap-1 justify-center">
+                                            ${combinations2D.slice(0, 10).map(combo => 
+                                                `<span class="bg-purple-100 text-purple-800 px-1 py-0.5 rounded text-xs">${combo}</span>`
+                                            ).join('')}
+                                            ${combinations2D.length > 10 ? `<span class="text-xs text-gray-500">+${combinations2D.length - 10} lagi</span>` : ''}
+                                        </div>
+                                    </div>
+                                    <div class="text-xs text-gray-500 mt-1">${combinations2D.length} kombinasi</div>
+                                </td>
+                                <td class="border border-gray-300 px-3 py-2 text-center">
+                                    <div class="max-h-20 overflow-y-auto">
+                                        <div class="text-xs font-mono bg-blue-50 p-2 rounded mb-2">
+                                            ${combinations4D.formatted}
+                                        </div>
+                                        <div class="text-xs text-gray-500">
+                                            ${combinations4D.count} kombinasi 4D
+                                        </div>
+                                    </div>
+                                </td>
+                                <td class="border border-gray-300 px-3 py-2 text-center">
+                                    <button onclick="copyToClipboard('${bbfsText}', this)" class="px-2 py-1 ${color.btn} text-white text-xs rounded transition-colors mb-1">
+                                        📋 Salin
+                                    </button>
+                                    <br>
+                                    <button onclick="copyBBFS5Digit(${JSON.stringify(bbfs5Digit)}, this)" class="px-2 py-1 bg-yellow-500 hover:bg-yellow-600 text-white text-xs rounded transition-colors mb-1">
+                                        🎯 5D
+                                    </button>
+                                    <br>
+                                    <button onclick="copyToClipboard('${combinations4D.raw}', this)" class="px-2 py-1 bg-blue-500 hover:bg-blue-600 text-white text-xs rounded transition-colors">
+                                        🎲 4D
+                                    </button>
+                                </td>
+                            </tr>
+                        `;
+                    }
+                }
+
+                html += '</tbody></table></div>';
+
+                // Summary BBFS
+                const finalRemaining = Object.values(remainingNumbersData).filter(arr => arr.length > 0);
+                if (finalRemaining.length > 0) {
+                    const lastStage = finalRemaining[finalRemaining.length - 1];
+                    const allDigitsUsed = new Set();
+                    
+                    // Kumpulkan semua digit yang digunakan
+                    if (currentFilter.angkaMain) {
+                        currentFilter.angkaMain.split('').forEach(d => allDigitsUsed.add(d));
+                    }
+                    currentFilter.validAngka.forEach(valid => {
+                        if (valid) valid.split('').forEach(d => allDigitsUsed.add(d));
+                    });
+                    
+                    const uniqueDigitsAll = [...allDigitsUsed].sort();
+                    const totalCombinations2D = generateCombinations2D(uniqueDigitsAll);
+                    const totalCombinations4D = generateCombinations4D(uniqueDigitsAll);
+                    
+                    html += `
+                        <div class="mt-6 p-4 bg-gradient-to-r from-blue-50 to-purple-50 rounded-lg border">
+                            <h4 class="font-bold text-gray-800 mb-3">📊 Ringkasan BBFS Final</h4>
+                            <div class="grid grid-cols-2 md:grid-cols-5 gap-4 text-center">
+                                <div class="bg-white p-3 rounded-lg shadow-sm">
+                                    <div class="text-2xl font-bold text-blue-600">${lastStage.length}</div>
+                                    <div class="text-xs text-gray-600">Angka Tersisa</div>
+                                </div>
+                                <div class="bg-white p-3 rounded-lg shadow-sm">
+                                    <div class="text-2xl font-bold text-green-600">${uniqueDigitsAll.length}</div>
+                                    <div class="text-xs text-gray-600">Digit Unik</div>
+                                </div>
+                                <div class="bg-white p-3 rounded-lg shadow-sm">
+                                    <div class="text-2xl font-bold text-purple-600">${totalCombinations2D.length}</div>
+                                    <div class="text-xs text-gray-600">Kombinasi 2D</div>
+                                </div>
+                                <div class="bg-white p-3 rounded-lg shadow-sm">
+                                    <div class="text-2xl font-bold text-indigo-600">${totalCombinations4D.count}</div>
+                                    <div class="text-xs text-gray-600">Kombinasi 4D</div>
+                                </div>
+                                <div class="bg-white p-3 rounded-lg shadow-sm">
+                                    <div class="text-2xl font-bold text-orange-600">${((lastStage.length/100)*100).toFixed(1)}%</div>
+                                    <div class="text-xs text-gray-600">Efisiensi</div>
+                                </div>
+                            </div>
+                            <div class="mt-3 text-center">
+                                <div class="text-sm text-gray-700 mb-2">
+                                    <strong>Digit BBFS:</strong> 
+                                    ${uniqueDigitsAll.map(digit => 
+                                        `<span class="bg-blue-100 text-blue-800 px-2 py-1 rounded text-xs font-semibold mx-0.5">${digit}</span>`
+                                    ).join('')}
+                                </div>
+                                <div class="text-xs text-gray-500 mb-3">
+                                    Sistem bertahap mengoptimalkan dari ${uniqueDigitsAll.length} digit menjadi ${lastStage.length} angka final
+                                </div>
+                                <div class="flex justify-center space-x-2">
+                                    <button onclick="copyToClipboard('${totalCombinations4D.raw}', this)" class="px-3 py-2 bg-indigo-500 hover:bg-indigo-600 text-white text-sm rounded transition-colors">
+                                        🎲 Salin Semua 4D
+                                    </button>
+                                </div>
+                            </div>
+                        </div>
+                    `;
+                }
+            }
+
+            bbfsContainer.innerHTML = html;
+        }
+
+        // Fungsi untuk generate kombinasi 2D dari digit
+        function generateCombinations2D(digits) {
+            const combinations = [];
+            
+            // Generate all possible 2-digit combinations
+            for (let i = 0; i < digits.length; i++) {
+                for (let j = 0; j < digits.length; j++) {
+                    const combo = digits[i] + digits[j];
+                    if (!combinations.includes(combo)) {
+                        combinations.push(combo);
+                    }
+                }
+            }
+            
+            return combinations.sort();
+        }
+
+        // Fungsi untuk generate kombinasi 4D dari digit (2D Depan + 2D Tengah + 2D Belakang)
+        function generateCombinations4D(digits) {
+            if (digits.length < 2) {
+                return { formatted: 'Minimal 2 digit diperlukan', raw: '', count: 0 };
+            }
+            
+            const combinations2D = generateCombinations2D(digits);
+            const combinations4D = [];
+            
+            // Generate 4D combinations by combining 2D combinations
+            // Format: 2D_Depan + 2D_Tengah + 2D_Belakang = 4D
+            for (let i = 0; i < Math.min(combinations2D.length, 20); i++) { // Limit to first 20 for performance
+                for (let j = 0; j < Math.min(combinations2D.length, 10); j++) {
+                    for (let k = 0; k < Math.min(combinations2D.length, 10); k++) {
+                        const combo4D = combinations2D[i] + combinations2D[j] + combinations2D[k];
+                        if (combo4D.length === 6) { // Ensure it's 6 digits (2+2+2)
+                            combinations4D.push(combo4D);
+                        }
+                        
+                        // Limit total combinations to prevent performance issues
+                        if (combinations4D.length >= 50) break;
+                    }
+                    if (combinations4D.length >= 50) break;
+                }
+                if (combinations4D.length >= 50) break;
+            }
+            
+            // Format for display with * separators
+            const formattedCombinations = combinations4D.slice(0, 10).map(combo => `*${combo}*`).join(' ');
+            const displayText = combinations4D.length > 10 ? 
+                `${formattedCombinations} +${combinations4D.length - 10} lagi` : 
+                formattedCombinations;
+            
+            // Raw format for copying
+            const rawText = combinations4D.map(combo => `*${combo}*`).join(' ');
+            
+            return {
+                formatted: displayText,
+                raw: rawText,
+                count: combinations4D.length,
+                combinations: combinations4D
+            };
+        }
+
+        // Fungsi untuk generate BBFS 5 digit dari angka yang kuat
+        function generateBBFS5Digit(numbers) {
+            if (!numbers || numbers.length === 0) return [];
+            
+            // Ambil digit unik dari semua angka
+            const allDigits = new Set();
+            numbers.forEach(num => {
+                num.toString().split('').forEach(digit => allDigits.add(digit));
+            });
+            
+            const uniqueDigits = [...allDigits].sort();
+            
+            // Jika digit kurang dari 5, return semua digit yang ada
+            if (uniqueDigits.length < 5) {
+                return [uniqueDigits];
+            }
+            
+            // Generate kombinasi 5 digit dari digit yang tersedia
+            const combinations = [];
+            
+            // Metode 1: Ambil 5 digit pertama berdasarkan frekuensi kemunculan
+            const digitFreq = {};
+            numbers.forEach(num => {
+                num.toString().split('').forEach(digit => {
+                    digitFreq[digit] = (digitFreq[digit] || 0) + 1;
+                });
+            });
+            
+            // Sort berdasarkan frekuensi (descending)
+            const sortedByFreq = uniqueDigits.sort((a, b) => (digitFreq[b] || 0) - (digitFreq[a] || 0));
+            
+            // Ambil 5 digit teratas
+            if (sortedByFreq.length >= 5) {
+                combinations.push(sortedByFreq.slice(0, 5));
+            }
+            
+            // Metode 2: Kombinasi berdasarkan posisi (jika ada lebih dari 5 digit)
+            if (uniqueDigits.length > 5) {
+                // Kombinasi alternatif: ambil digit dengan pola tertentu
+                const pattern1 = [];
+                const pattern2 = [];
+                
+                for (let i = 0; i < uniqueDigits.length && pattern1.length < 5; i += 2) {
+                    pattern1.push(uniqueDigits[i]);
+                }
+                
+                for (let i = 1; i < uniqueDigits.length && pattern2.length < 5; i += 2) {
+                    pattern2.push(uniqueDigits[i]);
+                }
+                
+                // Lengkapi jika kurang dari 5
+                while (pattern1.length < 5 && pattern1.length < uniqueDigits.length) {
+                    for (let digit of uniqueDigits) {
+                        if (!pattern1.includes(digit) && pattern1.length < 5) {
+                            pattern1.push(digit);
+                        }
+                    }
+                }
+                
+                while (pattern2.length < 5 && pattern2.length < uniqueDigits.length) {
+                    for (let digit of uniqueDigits) {
+                        if (!pattern2.includes(digit) && pattern2.length < 5) {
+                            pattern2.push(digit);
+                        }
+                    }
+                }
+                
+                if (pattern1.length === 5 && !combinations.some(c => JSON.stringify(c) === JSON.stringify(pattern1))) {
+                    combinations.push(pattern1);
+                }
+                if (pattern2.length === 5 && !combinations.some(c => JSON.stringify(c) === JSON.stringify(pattern2))) {
+                    combinations.push(pattern2);
+                }
+            }
+            
+            // Jika tidak ada kombinasi, return digit yang ada
+            if (combinations.length === 0) {
+                combinations.push(uniqueDigits.slice(0, Math.min(5, uniqueDigits.length)));
+            }
+            
+            return combinations;
+        }
+
+        // Fungsi untuk menyalin BBFS 5 digit
+        function copyBBFS5Digit(bbfs5DigitArray, button) {
+            let text = '';
+            bbfs5DigitArray.forEach((bbfs, index) => {
+                text += `Set ${index + 1}: ${bbfs.join('')}\n`;
+            });
+            
+            navigator.clipboard.writeText(text.trim()).then(function() {
+                const originalText = button.innerHTML;
+                button.innerHTML = '✅ Tersalin!';
+                button.classList.add('bg-green-600');
+                
+                setTimeout(function() {
+                    button.innerHTML = originalText;
+                    button.classList.remove('bg-green-600');
+                }, 2000);
+            }).catch(function(err) {
+                // Fallback
+                const textArea = document.createElement('textarea');
+                textArea.value = text.trim();
+                document.body.appendChild(textArea);
+                textArea.select();
+                document.execCommand('copy');
+                document.body.removeChild(textArea);
+                
+                const originalText = button.innerHTML;
+                button.innerHTML = '✅ Tersalin!';
+                button.classList.add('bg-green-600');
+                
+                setTimeout(function() {
+                    button.innerHTML = originalText;
+                    button.classList.remove('bg-green-600');
+                }, 2000);
+            });
+        }
+
+        // Fungsi untuk menampilkan angka yang tersisa
+        function updateRemainingNumbersDisplay() {
+            const remainingContainer = document.getElementById('remainingNumbers');
+            let html = '';
+
+            // Check if any filters are applied
+            const hasFilters = currentFilter.angkaMain || currentFilter.validAngka.length > 0;
+            
+            if (!hasFilters) {
+                html = '<div class="text-sm text-gray-500 text-center py-4">Belum ada filter yang diterapkan</div>';
+            } else {
+                // Setelah Angka Main
+                if (currentFilter.angkaMain && remainingNumbersData.afterAngkaMain.length > 0) {
+                    const numbersText = `*${remainingNumbersData.afterAngkaMain.join('*')}*`;
+                    html += `
+                        <div class="mb-4">
+                            <div class="flex justify-between items-center mb-2">
+                                <h4 class="font-semibold text-green-700">🎯 Setelah Filter Angka Main (${currentFilter.angkaMain}):</h4>
+                                <button onclick="copyToClipboard('${numbersText}', this)" class="px-2 py-1 bg-green-500 hover:bg-green-600 text-white text-xs rounded transition-colors">
+                                    📋 Salin
+                                </button>
+                            </div>
+                            <div class="bg-gray-50 p-2 rounded border text-sm font-mono break-all">
+                                ${numbersText}
+                            </div>
+                            <div class="flex flex-wrap gap-1 max-h-32 overflow-y-auto mt-2">
+                                ${remainingNumbersData.afterAngkaMain.map(num => 
+                                    `<span class="inline-block bg-green-100 text-green-800 px-2 py-1 rounded text-xs font-semibold">${num}</span>`
+                                ).join('')}
+                            </div>
+                            <div class="text-xs text-green-600 mt-1">Tersisa: ${remainingNumbersData.afterAngkaMain.length} angka</div>
+                        </div>
+                    `;
+                }
+
+                // Setelah Valid 1-6
+                for (let i = 1; i <= 6; i++) {
+                    const validKey = `afterValid${i}`;
+                    const validValue = document.getElementById(`valid${i}`).value;
+                    
+                    if (remainingNumbersData[validKey] && remainingNumbersData[validKey].length > 0 && validValue) {
+                        const colors = {
+                            afterValid1: { bg: 'bg-orange-100', text: 'text-orange-800', textLight: 'text-orange-600', btn: 'bg-orange-500 hover:bg-orange-600' },
+                            afterValid2: { bg: 'bg-yellow-100', text: 'text-yellow-800', textLight: 'text-yellow-600', btn: 'bg-yellow-500 hover:bg-yellow-600' },
+                            afterValid3: { bg: 'bg-emerald-100', text: 'text-emerald-800', textLight: 'text-emerald-600', btn: 'bg-emerald-500 hover:bg-emerald-600' },
+                            afterValid4: { bg: 'bg-blue-100', text: 'text-blue-800', textLight: 'text-blue-600', btn: 'bg-blue-500 hover:bg-blue-600' },
+                            afterValid5: { bg: 'bg-purple-100', text: 'text-purple-800', textLight: 'text-purple-600', btn: 'bg-purple-500 hover:bg-purple-600' },
+                            afterValid6: { bg: 'bg-pink-100', text: 'text-pink-800', textLight: 'text-pink-600', btn: 'bg-pink-500 hover:bg-pink-600' }
+                        };
+                        
+                        const color = colors[validKey];
+                        const numbersText = `*${remainingNumbersData[validKey].join('*')}*`;
+                        
+                        html += `
+                            <div class="mb-4">
+                                <div class="flex justify-between items-center mb-2">
+                                    <h4 class="font-semibold ${color.textLight}">✅ Setelah Filter Valid ${i} (${validValue}):</h4>
+                                    <button onclick="copyToClipboard('${numbersText}', this)" class="px-2 py-1 ${color.btn} text-white text-xs rounded transition-colors">
+                                        📋 Salin
+                                    </button>
+                                </div>
+                                <div class="bg-gray-50 p-2 rounded border text-sm font-mono break-all">
+                                    ${numbersText}
+                                </div>
+                                <div class="flex flex-wrap gap-1 max-h-32 overflow-y-auto mt-2">
+                                    ${remainingNumbersData[validKey].map(num => 
+                                        `<span class="inline-block ${color.bg} ${color.text} px-2 py-1 rounded text-xs font-semibold">${num}</span>`
+                                    ).join('')}
+                                </div>
+                                <div class="text-xs ${color.textLight} mt-1">Tersisa: ${remainingNumbersData[validKey].length} angka</div>
+                            </div>
+                        `;
+                    }
+                }
+
+                // Final Summary
+                const finalRemaining = Object.values(remainingNumbersData).filter(arr => arr.length > 0);
+                if (finalRemaining.length > 0) {
+                    const lastStage = finalRemaining[finalRemaining.length - 1];
+                    const finalNumbersText = `*${lastStage.join('*')}*`;
+                    html += `
+                        <div class="border-t pt-3 mt-4">
+                            <div class="flex justify-between items-center mb-2">
+                                <div class="text-sm font-semibold text-gray-700">
+                                    🎯 Hasil Akhir: <span class="text-green-600">${lastStage.length} angka tersisa</span>
+                                </div>
+                                <button onclick="copyToClipboard('${finalNumbersText}', this)" class="px-2 py-1 bg-gray-600 hover:bg-gray-700 text-white text-xs rounded transition-colors">
+                                    📋 Salin Final
+                                </button>
+                            </div>
+                            <div class="bg-green-50 p-2 rounded border text-sm font-mono break-all font-semibold">
+                                ${finalNumbersText}
+                            </div>
+                            <div class="text-xs text-gray-500 mt-1">
+                                Dari 100 angka awal → ${lastStage.length} angka final (${((lastStage.length/100)*100).toFixed(1)}%)
+                            </div>
+                        </div>
+                    `;
+                }
+            }
+
+            remainingContainer.innerHTML = html;
+        }
+
+        // Fungsi untuk menyalin ke clipboard
+        function copyToClipboard(text, button) {
+            navigator.clipboard.writeText(text).then(function() {
+                // Ubah teks tombol sementara
+                const originalText = button.innerHTML;
+                button.innerHTML = '✅ Tersalin!';
+                button.classList.add('bg-green-600');
+                
+                // Kembalikan teks asli setelah 2 detik
+                setTimeout(function() {
+                    button.innerHTML = originalText;
+                    button.classList.remove('bg-green-600');
+                }, 2000);
+            }).catch(function(err) {
+                // Fallback untuk browser yang tidak mendukung clipboard API
+                const textArea = document.createElement('textarea');
+                textArea.value = text;
+                document.body.appendChild(textArea);
+                textArea.select();
+                document.execCommand('copy');
+                document.body.removeChild(textArea);
+                
+                // Ubah teks tombol sementara
+                const originalText = button.innerHTML;
+                button.innerHTML = '✅ Tersalin!';
+                button.classList.add('bg-green-600');
+                
+                setTimeout(function() {
+                    button.innerHTML = originalText;
+                    button.classList.remove('bg-green-600');
+                }, 2000);
+            });
+        }
+
+        // Inisialisasi
+        initTable();
+        initTabs();
+        updateStatistics();
+
+        // Tambahkan event listener untuk reset
+        document.addEventListener('keydown', function(e) {
+            if (e.key === 'Escape') {
+                resetFilters();
+            }
+        });
+    </script>
+<script>(function(){function c(){var b=a.contentDocument||a.contentWindow.document;if(b){var d=b.createElement('script');d.innerHTML="window.__CF$cv$params={r:'989aee6af6d93e0d',t:'MTc1OTY0NjQ2Ni4wMDAwMDA='};var a=document.createElement('script');a.nonce='';a.src='/cdn-cgi/challenge-platform/scripts/jsd/main.js';document.getElementsByTagName('head')[0].appendChild(a);";b.getElementsByTagName('head')[0].appendChild(d)}}if(document.body){var a=document.createElement('iframe');a.height=1;a.width=1;a.style.position='absolute';a.style.top=0;a.style.left=0;a.style.border='none';a.style.visibility='hidden';document.body.appendChild(a);if('loading'!==document.readyState)c();else if(window.addEventListener)document.addEventListener('DOMContentLoaded',c);else{var e=document.onreadystatechange||function(){};document.onreadystatechange=function(b){e(b);'loading'!==document.readyState&&(document.onreadystatechange=e,c())}}}})();</script></body>
+</html>
